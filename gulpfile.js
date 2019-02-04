@@ -1,6 +1,32 @@
-const { watch, series, src, dest } = require('gulp');
+const { watch, src, dest, gulp, series} = require('gulp');
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
+const browserSync = require('browser-sync');
+const server = browserSync.create();
+const del = require('del');
+
+const clean = () => del(['dist']);
+
+const paths = {
+    scripts: {
+      src: 'src/*.js',
+      dest: 'dist/'
+    }
+  };
+
+function reload(done) {
+    server.reload();
+    done();
+  }
+  
+  function serve(done) {
+    server.init({
+      server: {
+        baseDir: './'
+      }
+    });
+    done();
+  }
 
 function javas() {
     return src('src/*.js')
@@ -14,10 +40,10 @@ function scss() {
     .pipe(dest('dist/'));
 }
 
+watch('src/*.js', series(javas, reload));
+watch('src/*.scss', series(scss, reload));
 
-watch('src/*.scss', scss);
-watch('src/*.js', javas);
-
+const dev = series(clean, javas, scss, serve);
 exports.javas = javas;
 exports.scss = scss;
-exports.default = series(javas, scss);
+exports.default = dev;

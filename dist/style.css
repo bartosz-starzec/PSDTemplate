@@ -1,3 +1,23 @@
-h1 {
-  text-align: center;
-  font-size: 50px; }
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  height: 1000%;
+  background-color: #0b0b0b;
+  padding: 20px 50px; }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  .header .logo {
+    display: flex;
+    align-items: center; }
+    .header .logo p {
+      font-size: 16px;
+      letter-spacing: 1px;
+      line-height: 24px;
+      color: #ffffff;
+      font-family: "Avenir";
+      font-weight: 800; }
