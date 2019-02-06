@@ -7,10 +7,17 @@ const del = require('del');
 
 const clean = () => del(['dist']);
 
-const paths = {
+const jsPaths = {
     scripts: {
-      src: 'src/*.js',
-      dest: 'dist/'
+      src: 'src/js/*.js',
+      dest: 'dist/js'
+    }
+  };
+
+  const scssPaths = {
+    styles: {
+      src: 'src/scss/*.scss',
+      dest: 'dist/css'
     }
   };
 
@@ -22,26 +29,27 @@ function reload(done) {
   function serve(done) {
     server.init({
       server: {
-        baseDir: './'
+        baseDir: "./",
+    directory: true
       }
     });
     done();
   }
 
 function javas() {
-    return src('src/*.js')
+    return src(jsPaths.scripts.src)
     .pipe(babel())
-    .pipe(dest('dist/'));
+    .pipe(dest(jsPaths.scripts.dest));
 }
 
 function scss() {
-    return src('src/*.scss')
+    return src(scssPaths.styles.src)
     .pipe(sass())
-    .pipe(dest('dist/'));
+    .pipe(dest(scssPaths.styles.dest));
 }
 
-watch('src/*.js', series(javas, reload));
-watch('src/*.scss', series(scss, reload));
+watch(jsPaths.scripts.src, series(javas, reload));
+watch(scssPaths.styles.src, series(scss, reload));
 
 const dev = series(clean, javas, scss, serve);
 exports.javas = javas;
