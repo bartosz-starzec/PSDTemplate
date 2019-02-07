@@ -54,9 +54,30 @@ body {
             left: 50%;
             transform: translateX(-50%);
             &:after {
-                content: attr(data-content);
-                color: #fff;
+                content: attr(data-index);
+                color: rgb(75.6%, 80%, 78.5%);
+                position: absolute;
+                top: -7px;
+                left: 20px;
             }
+        }
+        .activeDot, .dotContent:hover {
+            cursor: pointer;
+            &::after {
+                content: attr(data-name);
+                color: rgb(75.6%, 80%, 78.5%);
+                position: absolute;
+                top: -7px;
+                left: 20px;
+            }
+            &:before {
+                color: rgb(75.6%, 80%, 78.5%);
+                content: attr(data-index);
+                position: absolute;
+                left: -30px;
+                top: -7px;
+            }
+
         }
     }
 }

@@ -2,52 +2,20 @@
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var Element = function Element(width, height, top, left, classes) {
+  _classCallCheck(this, Element);
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Dot =
-/*#__PURE__*/
-function () {
-  function Dot(width, height, top, parent) {
-    var contentIndex = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
-
-    _classCallCheck(this, Dot);
-
-    this.width = width;
-    this.height = height;
-    this.top = top;
-    this.parent = parent;
-    this.contentIndex = contentIndex;
-  }
-
-  _createClass(Dot, [{
-    key: "createDot",
-    value: function createDot() {
-      var parent = this.parent;
-      var dot = document.createElement('div');
-      dot.classList = 'dot';
-      dot.setAttribute('style', 'top:' + this.top + 'px; width: ' + this.width + 'px; height:' + this.height + 'px;');
-
-      if (this.contentIndex !== null) {
-        dot.setAttribute('data-content', contentNames[this.contentIndex]);
-      }
-
-      parent.appendChild(dot);
-    }
-  }, {
-    key: "addContentName",
-    value: function addContentName(nameIndex) {}
-  }]);
-
-  return Dot;
-}();
+  var element = document.createElement('div');
+  element.classList = classes;
+  element.setAttribute('style', 'top:' + top + 'px; left: ' + left + 'px; width: ' + width + 'px; height:' + height + 'px;');
+  return element;
+};
 
 var dotTop = 0;
 var dotContainer = document.getElementById('dotContainer');
-var numberofDotSpace = 5;
+var distanceBetweenContentDots = 5;
 var numberOfContents = 5;
-var numberOfDots = numberOfContents * numberofDotSpace;
+var numberOfDots = numberOfContents * distanceBetweenContentDots;
 var numberOfContentDots = Math.round(numberOfDots / numberOfContents);
 var bigDotPoint = 2;
 var contentNameIndex = 0;
@@ -61,7 +29,7 @@ var contentDot = {
 };
 var contentNames = ['Home', 'About', 'Contact', 'Info', 'More'];
 
-for (var i = 0; i < numberOfDots; i++) {
+var _loop = function _loop(i) {
   var dot = void 0;
 
   if (i == 0) {
@@ -71,14 +39,34 @@ for (var i = 0; i < numberOfDots; i++) {
   }
 
   if (i == bigDotPoint) {
-    dot = new Dot(contentDot.width, contentDot.height, dotTop, document.getElementById('dotContainer'), contentNameIndex);
+    dot = new Element(contentDot.width, contentDot.height, dotTop, 0, ' dot dotContent');
+    dot.setAttribute('data-index', '0' + (contentNameIndex + 1));
+    dot.setAttribute('data-name', contentNames[contentNameIndex]);
     contentNameIndex++;
+    dot.addEventListener('click', function () {
+      activateElement(dot);
+    });
     bigDotPoint += numberOfContentDots;
   } else {
-    dot = new Dot(smallDot.width, smallDot.height, dotTop, document.getElementById('dotContainer'));
+    dot = new Element(smallDot.width, smallDot.height, dotTop, 0, 'dot');
   }
 
-  dot.createDot();
+  dotContainer.appendChild(dot);
+};
+
+for (var i = 0; i < numberOfDots; i++) {
+  _loop(i);
+}
+
+var firstDot = document.getElementsByClassName('dotContent')[0].classList.add('activeDot');
+
+function activateElement(dot) {
+  var dots = document.getElementsByClassName('dotContent');
+
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.remove('activeDot');
+    dot.classList.add('activeDot');
+  }
 } // var xmlhttp = new XMLHttpRequest();
 // xmlhttp.onreadystatechange = function() {
 //   if (xmlhttp.readyState == XMLHttpRequest.DONE) {

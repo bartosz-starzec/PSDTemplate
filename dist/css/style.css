@@ -46,5 +46,22 @@ body {
       left: 50%;
       transform: translateX(-50%); }
       .wrapper .contentLine .dot:after {
-        content: attr(data-content);
-        color: #fff; }
+        content: attr(data-index);
+        color: #c1ccc8;
+        position: absolute;
+        top: -7px;
+        left: 20px; }
+    .wrapper .contentLine .activeDot, .wrapper .contentLine .dotContent:hover {
+      cursor: pointer; }
+      .wrapper .contentLine .activeDot::after, .wrapper .contentLine .dotContent:hover::after {
+        content: attr(data-name);
+        color: #c1ccc8;
+        position: absolute;
+        top: -7px;
+        left: 20px; }
+      .wrapper .contentLine .activeDot:before, .wrapper .contentLine .dotContent:hover:before {
+        color: #c1ccc8;
+        content: attr(data-index);
+        position: absolute;
+        left: -30px;
+        top: -7px; }

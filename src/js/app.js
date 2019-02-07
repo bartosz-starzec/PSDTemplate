@@ -1,34 +1,17 @@
-class Dot {
-    constructor(width, height, top, parent, contentIndex = null) {
-        this.width = width;
-        this.height = height;
-        this.top = top;
-        this.parent = parent;
-        this.contentIndex = contentIndex;
+class Element  {
+    constructor (width, height, top, left, classes) {
+        const element = document.createElement('div');
+        element.classList = classes;
+        element.setAttribute('style', 'top:' + top + 'px; left: ' + left + 'px; width: ' + width + 'px; height:' + height + 'px;');
+        return element;
     }
-
-    createDot() {
-        const parent = this.parent;
-        const dot = document.createElement('div');
-        dot.classList = 'dot';
-        dot.setAttribute('style', 'top:' + this.top + 'px; width: ' + this.width + 'px; height:' + this.height + 'px;');
-        if (this.contentIndex !== null) {
-            dot.setAttribute('data-content', contentNames[this.contentIndex]);
-        }
-        parent.appendChild(dot);
-    }
-
-    addContentName(nameIndex) {
-        
-    }
-
 }
 
 let dotTop = 0;
 const dotContainer = document.getElementById('dotContainer');
-const numberofDotSpace = 5;
+const distanceBetweenContentDots = 5;
 const numberOfContents = 5;
-const numberOfDots = numberOfContents * numberofDotSpace;
+const numberOfDots = numberOfContents * distanceBetweenContentDots;
 const numberOfContentDots = Math.round(numberOfDots / numberOfContents);
 let bigDotPoint = 2;
 let contentNameIndex = 0;
@@ -54,7 +37,6 @@ const contentNames = [
 for (let i = 0; i < numberOfDots; i++) {
 
     let dot;
-    
 
     if (i == 0) {
         dotTop += 15;
@@ -63,13 +45,28 @@ for (let i = 0; i < numberOfDots; i++) {
     }
 
     if (i == bigDotPoint) {
-        dot = new Dot(contentDot.width, contentDot.height, dotTop, document.getElementById('dotContainer'), contentNameIndex);
+        dot = new Element(contentDot.width, contentDot.height, dotTop, 0, ' dot dotContent');
+        dot.setAttribute('data-index', '0' + (contentNameIndex + 1));
+        dot.setAttribute('data-name', contentNames[contentNameIndex]);
         contentNameIndex++;
+        dot.addEventListener('click', function() {
+            activateElement(dot)
+        });
         bigDotPoint += numberOfContentDots;
     } else {
-        dot = new Dot(smallDot.width, smallDot.height, dotTop, document.getElementById('dotContainer'));
+        dot = new Element(smallDot.width, smallDot.height, dotTop, 0, 'dot');
     }
-    dot.createDot();
+    dotContainer.appendChild(dot);
+}
+
+const firstDot = document.getElementsByClassName('dotContent')[0].classList.add('activeDot');
+
+function activateElement(dot) {
+    const dots = document.getElementsByClassName('dotContent');
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove('activeDot');
+        dot.classList.add('activeDot');
+    }
 }
 
 
