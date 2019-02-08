@@ -48,8 +48,7 @@ function scss() {
     .pipe(dest(scssPaths.styles.dest));
 }
 
-watch(jsPaths.scripts.src, series(javas, reload));
-watch(scssPaths.styles.src, series(scss, reload));
+watch([jsPaths.scripts.src, scssPaths.styles.src, './index.html'], series(javas, scss, reload));
 
 const dev = series(clean, javas, scss, serve);
 exports.javas = javas;

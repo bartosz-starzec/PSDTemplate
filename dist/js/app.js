@@ -13,19 +13,21 @@ var Element = function Element(width, height, top, left, classes) {
 
 var dotTop = 0;
 var dotContainer = document.getElementById('dotContainer');
-var distanceBetweenContentDots = 5;
+var distanceBetweenContentDots = 4;
 var numberOfContents = 5;
 var numberOfDots = numberOfContents * distanceBetweenContentDots;
 var numberOfContentDots = Math.round(numberOfDots / numberOfContents);
 var bigDotPoint = 2;
 var contentNameIndex = 0;
+var scrollDirection = '';
+var contentIndex = 0;
 var smallDot = {
   width: 3,
   height: 3
 };
 var contentDot = {
-  width: 6,
-  height: 6
+  width: 4,
+  height: 4
 };
 var contentNames = ['Home', 'About', 'Contact', 'Info', 'More'];
 
@@ -58,8 +60,6 @@ for (var i = 0; i < numberOfDots; i++) {
   _loop(i);
 }
 
-var firstDot = document.getElementsByClassName('dotContent')[0].classList.add('activeDot');
-
 function activateElement(dot) {
   var dots = document.getElementsByClassName('dotContent');
 
@@ -67,6 +67,72 @@ function activateElement(dot) {
     dots[i].classList.remove('activeDot');
     dot.classList.add('activeDot');
   }
+}
+
+var firstDot = document.getElementsByClassName('dotContent')[0].classList.add('activeDot');
+
+function detectMouseWheelDirection(e) {
+  var delta = null,
+      direction = false;
+
+  if (!e) {
+    // if the event is not provided, we get it from the window object
+    e = window.event;
+  }
+
+  if (e.wheelDelta) {
+    // will work in most cases
+    delta = e.wheelDelta / 60;
+  } else if (e.detail) {
+    // fallback for Firefox
+    delta = -e.detail / 2;
+  }
+
+  if (delta !== null) {
+    direction = delta > 0 ? 'up' : 'down';
+  }
+
+  return direction;
+}
+
+function handleMouseWheelDirection(direction) {
+  var currentContentDot = document.getElementsByClassName('activeDot')[0];
+  var parentofSelected = currentContentDot.parentNode;
+  var children = parentofSelected.childNodes;
+  var elementIndex = currentContentDot.getAttribute('data-index');
+  contentIndex = Number(elementIndex[elementIndex.length - 1]) - 1;
+
+  if (direction == 'down') {
+    contentIndex++;
+
+    if (contentIndex == contentNames.length) {
+      contentIndex = 0;
+    }
+  } else if (direction == 'up') {
+    contentIndex--;
+
+    if (contentIndex < 0) {
+      contentIndex = contentNames.length - 1;
+    }
+  }
+
+  console.log(contentIndex);
+
+  for (var i = 0; i < children.length; i++) {
+    if (children[i].classList && children[i].getAttribute('data-name') == contentNames[contentIndex]) {
+      activateElement(children[i]);
+    }
+  }
+}
+
+document.onmousewheel = function (e) {
+  handleMouseWheelDirection(detectMouseWheelDirection(e));
+};
+
+if (window.addEventListener) {
+  document.addEventListener('DOMMouseScroll', function (e) {
+    handleMouseWheelDirection(detectMouseWheelDirection(e));
+  });
 } // var xmlhttp = new XMLHttpRequest();
 // xmlhttp.onreadystatechange = function() {
 //   if (xmlhttp.readyState == XMLHttpRequest.DONE) {
