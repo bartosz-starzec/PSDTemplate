@@ -13,11 +13,9 @@ var Element = function Element(width, height, top, left, classes) {
 
 var dotTop = 0;
 var dotContainer = document.getElementById('dotContainer');
-var distanceBetweenContentDots = 4;
+var distanceBetweenContentDots = 120;
+var limitDistance = 60;
 var numberOfContents = 5;
-var numberOfDots = numberOfContents * distanceBetweenContentDots;
-var numberOfContentDots = Math.round(numberOfDots / numberOfContents);
-var bigDotPoint = 2;
 var contentNameIndex = 0;
 var scrollDirection = '';
 var contentIndex = 0;
@@ -31,32 +29,32 @@ var contentDot = {
 };
 var contentNames = ['Home', 'About', 'Contact', 'Info', 'More'];
 
+var setLineHeight = function setLineHeight(distance, numberOfContents) {
+  document.getElementById('dotContainer').style.height = distance * (numberOfContents - 1) + limitDistance * 2 + 'px';
+};
+
+setLineHeight(distanceBetweenContentDots, numberOfContents);
+
 var _loop = function _loop(i) {
   var dot = void 0;
 
   if (i == 0) {
-    dotTop += 15;
+    dotTop += limitDistance;
   } else {
-    dotTop += 30;
+    dotTop += distanceBetweenContentDots;
   }
 
-  if (i == bigDotPoint) {
-    dot = new Element(contentDot.width, contentDot.height, dotTop, 0, ' dot dotContent');
-    dot.setAttribute('data-index', '0' + (contentNameIndex + 1));
-    dot.setAttribute('data-name', contentNames[contentNameIndex]);
-    contentNameIndex++;
-    dot.addEventListener('click', function () {
-      activateElement(dot);
-    });
-    bigDotPoint += numberOfContentDots;
-  } else {
-    dot = new Element(smallDot.width, smallDot.height, dotTop, 0, 'dot');
-  }
-
+  dot = new Element(contentDot.width, contentDot.height, dotTop, 0, ' dot dotContent');
+  dot.setAttribute('data-index', '0' + (contentNameIndex + 1));
+  dot.setAttribute('data-name', contentNames[contentNameIndex]);
+  contentNameIndex++;
+  dot.addEventListener('click', function () {
+    activateElement(dot);
+  });
   dotContainer.appendChild(dot);
 };
 
-for (var i = 0; i < numberOfDots; i++) {
+for (var i = 0; i < numberOfContents; i++) {
   _loop(i);
 }
 
@@ -95,6 +93,19 @@ function detectMouseWheelDirection(e) {
   return direction;
 }
 
+function checkKey(e) {
+  e = e || window.event;
+  var direction;
+
+  if (e.keyCode == '38') {
+    direction = 'up';
+  } else if (e.keyCode == '40') {
+    direction = 'down';
+  }
+
+  return direction;
+}
+
 function handleMouseWheelDirection(direction) {
   var currentContentDot = document.getElementsByClassName('activeDot')[0];
   var parentofSelected = currentContentDot.parentNode;
@@ -127,6 +138,10 @@ function handleMouseWheelDirection(direction) {
 
 document.onmousewheel = function (e) {
   handleMouseWheelDirection(detectMouseWheelDirection(e));
+};
+
+document.onkeydown = function (e) {
+  handleMouseWheelDirection(checkKey(e));
 };
 
 if (window.addEventListener) {

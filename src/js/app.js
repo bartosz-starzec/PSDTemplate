@@ -8,12 +8,11 @@ class Element {
 }
 
 let dotTop = 0;
+
 const dotContainer = document.getElementById('dotContainer');
-const distanceBetweenContentDots = 4;
+const distanceBetweenContentDots = 120;
+const limitDistance = 60;
 const numberOfContents = 5;
-const numberOfDots = numberOfContents * distanceBetweenContentDots;
-const numberOfContentDots = Math.round(numberOfDots / numberOfContents);
-let bigDotPoint = 2;
 let contentNameIndex = 0;
 let scrollDirection = '';
 let contentIndex = 0;
@@ -34,31 +33,34 @@ const contentNames = [
     'About',
     'Contact',
     'Info',
-    'More' 
+    'More'
 ]
 
-for (let i = 0; i < numberOfDots; i++) {
+const setLineHeight = (distance, numberOfContents) => {
+    document.getElementById('dotContainer').style.height = ((distance * (numberOfContents - 1)) + (limitDistance * 2)) + 'px';
+}
+
+setLineHeight(distanceBetweenContentDots, numberOfContents);
+
+for (let i = 0; i < numberOfContents; i++) {
 
     let dot;
 
     if (i == 0) {
-        dotTop += 15;
+        dotTop += limitDistance;
     } else {
-        dotTop += 30;
+
+        dotTop += distanceBetweenContentDots;
     }
 
-    if (i == bigDotPoint) {
-        dot = new Element(contentDot.width, contentDot.height, dotTop, 0, ' dot dotContent');
-        dot.setAttribute('data-index', '0' + (contentNameIndex + 1));
-        dot.setAttribute('data-name', contentNames[contentNameIndex]);
-        contentNameIndex++;
-        dot.addEventListener('click', function () {
-            activateElement(dot);
-        });
-        bigDotPoint += numberOfContentDots;
-    } else {
-        dot = new Element(smallDot.width, smallDot.height, dotTop, 0, 'dot');
-    }
+
+    dot = new Element(contentDot.width, contentDot.height, dotTop, 0, ' dot dotContent');
+    dot.setAttribute('data-index', '0' + (contentNameIndex + 1));
+    dot.setAttribute('data-name', contentNames[contentNameIndex]);
+    contentNameIndex++;
+    dot.addEventListener('click', function () {
+        activateElement(dot);
+    });
     dotContainer.appendChild(dot);
 }
 
@@ -90,6 +92,23 @@ function detectMouseWheelDirection(e) {
 
     return direction;
 }
+
+
+
+function checkKey(e) {
+
+    e = e || window.event;
+    let direction;
+
+    if (e.keyCode == '38') {
+        direction = 'up';
+    } else if (e.keyCode == '40') {
+        direction = 'down';
+    }
+
+    return direction;
+}
+
 
 function handleMouseWheelDirection(direction) {
     let currentContentDot = document.getElementsByClassName('activeDot')[0];
@@ -123,6 +142,10 @@ function handleMouseWheelDirection(direction) {
 document.onmousewheel = function (e) {
     handleMouseWheelDirection(detectMouseWheelDirection(e));
 };
+
+document.onkeydown = function (e) {
+    handleMouseWheelDirection(checkKey(e));
+}
 
 if (window.addEventListener) {
     document.addEventListener('DOMMouseScroll', function (e) {
