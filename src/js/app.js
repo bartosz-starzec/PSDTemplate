@@ -10,7 +10,7 @@ class Element {
 let dotTop = 0;
 
 const dotContainer = document.getElementById('dotContainer');
-const distanceBetweenContentDots = 120;
+const distanceBetweenContentDots = 130;
 const limitDistance = 60;
 const numberOfContents = 5;
 let contentNameIndex = 0;

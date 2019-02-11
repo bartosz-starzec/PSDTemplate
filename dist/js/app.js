@@ -13,7 +13,7 @@ var Element = function Element(width, height, top, left, classes) {
 
 var dotTop = 0;
 var dotContainer = document.getElementById('dotContainer');
-var distanceBetweenContentDots = 120;
+var distanceBetweenContentDots = 130;
 var limitDistance = 60;
 var numberOfContents = 5;
 var contentNameIndex = 0;
