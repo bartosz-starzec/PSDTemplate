@@ -8,6 +8,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="dist/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="dist/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="dist/css/slick-theme.css" />
 </head>
 
 <body>
@@ -25,7 +27,7 @@
 
         </div>
         <div class="content">
-            <div class="home-header">
+            <!-- <div class="home-header">
                 <div class="home-header__info">
                     <p class="home-header__info__text">
 
@@ -74,20 +76,31 @@
                 </a>
 
             </div>
+        </div> -->
+            <div class="works-slider">
+                <button class="js--prev-slide">&#10094;</button>
+                <div class="slider">one</div>
+                <div class="slider">two</div>
+                <div class="slider">three</div>
+                <button class="js--next-slide">&#10095;</button>
+            </div>
         </div>
-    </div>
-    <div class="screenTooSmall">
-        <div class="screenTooSmall__logo">
-            <img src="./src/images/logo.png" alt="logo">
-            <span class="company-name">GLOBAL</span>
+        <div class="screenTooSmall">
+            <div class="screenTooSmall__logo">
+                <img src="./src/images/logo.png" alt="logo">
+                <span class="company-name">GLOBAL</span>
+            </div>
+            <p class="screenTooSmall__text">
+                Global has so much to offer that we must request you orient your device to portrait or find a larger
+                screen. You won't be disappointed.
+            </p>
         </div>
-        <p class="screenTooSmall__text">
-            Global has so much to offer that we must request you orient your device to portrait or find a larger
-            screen. You won't be disappointed.
-        </p>
-    </div>
 
-    <script src="dist/js/app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
+        <script type="text/javascript" src="dist/js/slick.js"></script>
+        <script src="dist/js/app.js"></script>
 </body>
 
 </html>
