@@ -8,8 +8,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="dist/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="dist/css/slick.css" />
-    <link rel="stylesheet" type="text/css" href="dist/css/slick-theme.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="dist/css/slick.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="dist/css/slick-theme.css" /> -->
 </head>
 
 <body>
@@ -77,13 +77,27 @@
 
             </div>
         </div> -->
-            <div class="works-slider">
-                <button class="js--prev-slide">&#10094;</button>
-                <div class="slider">one</div>
-                <div class="slider">two</div>
-                <div class="slider">three</div>
-                <button class="js--next-slide">&#10095;</button>
+            <div class="works">
+                <h2 class="works__header">Selected work</h2>
+                <div class="works__slider works-slider">
+                    <button class="works-slider__control button js--prev-slide">
+                        <img src="./src/images/ic_arrow.png" alt="">
+                    </button>
+                    <div class="works-slider__item">
+                        <img src="./src/images/slider1.png" alt="">
+                    </div>
+                    <div class="works-slider__item works-slider__item--center">
+                        <img src="./src/images/slider2.png" alt="">
+                    </div>
+                    <div class="works-slider__item">
+                        <img src="./src/images/slider3.png" alt="">
+                    </div>
+                    <button class="works-slider__control button js--next-slide">
+                        <img src="./src/images/arrow.png" alt="">
+                    </button>
+                </div>
             </div>
+
         </div>
         <div class="screenTooSmall">
             <div class="screenTooSmall__logo">
@@ -99,8 +113,8 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
-        <script type="text/javascript" src="dist/js/slick.js"></script>
-        <script src="dist/js/app.js"></script>
+        <!-- <script type="text/javascript" src="dist/js/slick.js"></script> -->
+        <script src="dist/js/main.js"></script>
 </body>
 
 </html>

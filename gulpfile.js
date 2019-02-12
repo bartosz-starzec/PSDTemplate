@@ -4,6 +4,7 @@ const sass = require('gulp-sass');
 const browserSync = require('browser-sync');
 const server = browserSync.create();
 const del = require('del');
+const concat = require('gulp-concat');
 
 const clean = () => del(['dist']);
 
@@ -16,7 +17,7 @@ const jsPaths = {
 
   const scssPaths = {
     styles: {
-      src: 'src/scss/*.scss',
+      src: 'src/scss/**/*.scss',
       dest: 'dist/css'
     }
   };
@@ -39,12 +40,14 @@ function reload(done) {
 function javas() {
     return src(jsPaths.scripts.src)
     .pipe(babel())
+    .pipe(concat('main.js'))
     .pipe(dest(jsPaths.scripts.dest));
 }
 
 function scss() {
     return src(scssPaths.styles.src)
     .pipe(sass())
+    .pipe(concat('style.css'))
     .pipe(dest(scssPaths.styles.dest));
 }
 
