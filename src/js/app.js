@@ -194,49 +194,53 @@ if (window.addEventListener) {
 // });
 
 class Slider {
-    constructor(elements, slideIndex) {
-        this.elements = elements;
-        this.slideIndex = slideIndex;
+    constructor(elements, centerElementImageClass, centerElementTextClass) {
+        this.elements = document.getElementsByClassName(elements);
+        this.centerElementImageClass = centerElementImageClass;
+        this.centerElementTextClass = centerElementTextClass;
     }
 
-    showSlides(centerSlideIndex) {
-
+    toggleSlide(centerSlideIndex) {
         for (let i = 0; i < this.elements.length; i++) {
-            this.elements[i].style.color = "white";
+            if (this.elements[i].children[0].classList.contains(this.centerElementImageClass)) {
+                this.elements[i].children[0].classList.remove(this.centerElementImageClass);
+            }
+            if (this.elements[i].children[2].classList.contains('works-slider__item__description--center')) {
+                this.elements[i].children[2].classList.remove('works-slider__item__description--center');
+            }
         }
-        console.log(this.slideIndex);
-        const firstSlide = this.elements[this.slideIndex + 1].innerHTML;
+        const firstSlide = this.elements[centerSlideIndex + 1].outerHTML;
         let secondSlide;
-        const thirdSlide = this.elements[this.slideIndex].innerHTML;
+        const thirdSlide = this.elements[centerSlideIndex].outerHTML;
+
         if (centerSlideIndex == 0) {
-            secondSlide = this.elements[this.slideIndex + 2].innerHTML;
-            this.elements[this.slideIndex].innerHTML = firstSlide;
-            this.elements[this.slideIndex + 1].innerHTML = secondSlide;
-            this.elements[this.slideIndex + 2].innerHTML = thirdSlide;
+            secondSlide = this.elements[centerSlideIndex + 2].outerHTML;
         } else {
-            secondSlide = this.elements[this.slideIndex - 1].innerHTML;
-            this.elements[this.slideIndex + 1].innerHTML = thirdSlide; // last slide
-            this.elements[this.slideIndex].innerHTML = secondSlide; // center
-            this.elements[this.slideIndex - 1].innerHTML = firstSlide; //first slide
+            secondSlide = this.elements[centerSlideIndex - 1].outerHTML;
         }
+
+        this.elements[0].outerHTML = firstSlide;
+        this.elements[1].outerHTML = secondSlide;
+        this.elements[1].children[0].classList.add(this.centerElementImageClass);
+        this.elements[1].children[2].classList.add(this.centerElementTextClass);
+        this.elements[2].outerHTML = thirdSlide;
     }
 
-    plusDivs(n) {
-        this.showSlides(this.slideIndex = n);
-    }
 
 }
 
-const sliderElements = document.getElementsByClassName("slider");
-const worksSlider = new Slider(sliderElements, 2);
-// worksSlider.showSlides(1);
+const sliderElementClass = "works-slider__item";
+const centerElementImageClass = 'works-slider__item__photo--center';
+const centerElementTextClass = 'works-slider__item__description--center';
+const worksSlider = new Slider(sliderElementClass, centerElementImageClass, centerElementTextClass);
+worksSlider.toggleSlide(1);
 
 const nextSlide = document.getElementsByClassName("js--next-slide")[0];
 nextSlide.addEventListener("click", function () {
-    worksSlider.plusDivs(1);
+    worksSlider.toggleSlide(1);
 });
 
 const prevSlide = document.getElementsByClassName("js--prev-slide")[0];
 prevSlide.addEventListener("click", function () {
-    worksSlider.plusDivs(0);
+    worksSlider.toggleSlide(0);
 });

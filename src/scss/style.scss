@@ -1,5 +1,4 @@
-@import './pages/home.scss';
-@import './pages/works.scss';
+
 
 * {
     margin: 0;
@@ -85,7 +84,7 @@ body {
         width: 1px;
         height: 76vh;
         background-color: #5b5d5b7a;
-        position: relative;
+        position: absolute;
         font-size: 15px;
 
         @media screen and (max-width: 1150px) {

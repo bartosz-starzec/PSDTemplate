@@ -16,23 +16,47 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    transition: all 1s ease;
 
     &__item {
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         color: #fff;
-        width: 150px;
-        height: 150px; 
-        border-radius: 50%;
         margin: 0 30px;
-        overflow: hidden;
 
-        &--center {
-            width: 300px;
-            height: 300px;
+        &__photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 30px 10px;
+            overflow: hidden;
+            &--center {
+                width: 300px;
+                height: 300px;
+                margin-bottom: 20px;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &__name {
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        &__description {
+            text-align: center;
+            margin: 0 25px;
+            display: none;
+            &--center {
+                display: block;
+            }
         }
     }
+
     &__control {
         width: 50px;
         height: 50px;
@@ -41,5 +65,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0 20px;
     }
 }
