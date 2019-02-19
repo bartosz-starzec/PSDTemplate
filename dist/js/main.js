@@ -131,8 +131,6 @@ function handleMouseWheelDirection(direction) {
     }
   }
 
-  console.log(contentIndex);
-
   for (var i = 0; i < children.length; i++) {
     if (children[i].classList && children[i].getAttribute('data-name') == contentNames[contentIndex]) {
       activateElement(children[i]);
@@ -152,65 +150,51 @@ if (window.addEventListener) {
   document.addEventListener('DOMMouseScroll', function (e) {
     handleMouseWheelDirection(detectMouseWheelDirection(e));
   });
-} // var xmlhttp = new XMLHttpRequest();
-// xmlhttp.onreadystatechange = function() {
-//   if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-//     if (xmlhttp.status == 200) {
-//        console.log(xmlhttp.responseText);
-//       }
-//     }
-//   };
-// xmlhttp.open("GET", "src/images", true);
-// xmlhttp.send();
-// $(document).ready(function () {
-//     $('.multiple-items').slick({
-//         centerMode: true,
-//         centerPadding: '60px',
-//         slidesToShow: 3,
-//         responsive: [{
-//                 breakpoint: 768,
-//                 settings: {
-//                     arrows: false,
-//                     centerMode: true,
-//                     centerPadding: '40px',
-//                     slidesToShow: 3
-//                 }
-//             },
-//             {
-//                 breakpoint: 480,
-//                 settings: {
-//                     arrows: false,
-//                     centerMode: true,
-//                     centerPadding: '40px',
-//                     slidesToShow: 1
-//                 }
-//             }
-//         ]
-//     });
-// });
+}
 
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementsByClassName("content")[0].innerHTML = this.responseText;
+    }
+  };
+
+  xhttp.open("GET", "works.html", true);
+  xhttp.send();
+  var sliderElementClass = "works-slider__item";
+  var centerElementClass = 'works-slider__item--center';
+  setTimeout(function () {
+    var worksSlider = new Slider(sliderElementClass, centerElementClass);
+    worksSlider.toggleSlide(1);
+    var nextSlide = document.getElementsByClassName("js--next-slide")[0];
+    nextSlide.addEventListener("click", function () {
+      worksSlider.toggleSlide(1);
+    });
+    var prevSlide = document.getElementsByClassName("js--prev-slide")[0];
+    prevSlide.addEventListener("click", function () {
+      worksSlider.toggleSlide(0);
+    });
+  }, 3000);
+}
 
 var Slider =
 /*#__PURE__*/
 function () {
-  function Slider(elements, centerElementImageClass, centerElementTextClass) {
+  function Slider(elements, centerElementClass) {
     _classCallCheck(this, Slider);
 
     this.elements = document.getElementsByClassName(elements);
-    this.centerElementImageClass = centerElementImageClass;
-    this.centerElementTextClass = centerElementTextClass;
+    this.centerElementClass = centerElementClass;
   }
 
   _createClass(Slider, [{
     key: "toggleSlide",
     value: function toggleSlide(centerSlideIndex) {
       for (var i = 0; i < this.elements.length; i++) {
-        if (this.elements[i].children[0].classList.contains(this.centerElementImageClass)) {
-          this.elements[i].children[0].classList.remove(this.centerElementImageClass);
-        }
-
-        if (this.elements[i].children[2].classList.contains('works-slider__item__description--center')) {
-          this.elements[i].children[2].classList.remove('works-slider__item__description--center');
+        if (this.elements[i].classList.contains(this.centerElementClass)) {
+          this.elements[i].classList.remove(this.centerElementClass);
         }
       }
 
@@ -226,8 +210,7 @@ function () {
 
       this.elements[0].outerHTML = firstSlide;
       this.elements[1].outerHTML = secondSlide;
-      this.elements[1].children[0].classList.add(this.centerElementImageClass);
-      this.elements[1].children[2].classList.add(this.centerElementTextClass);
+      this.elements[1].classList.add(this.centerElementClass);
       this.elements[2].outerHTML = thirdSlide;
     }
   }]);
@@ -235,16 +218,4 @@ function () {
   return Slider;
 }();
 
-var sliderElementClass = "works-slider__item";
-var centerElementImageClass = 'works-slider__item__photo--center';
-var centerElementTextClass = 'works-slider__item__description--center';
-var worksSlider = new Slider(sliderElementClass, centerElementImageClass, centerElementTextClass);
-worksSlider.toggleSlide(1);
-var nextSlide = document.getElementsByClassName("js--next-slide")[0];
-nextSlide.addEventListener("click", function () {
-  worksSlider.toggleSlide(1);
-});
-var prevSlide = document.getElementsByClassName("js--prev-slide")[0];
-prevSlide.addEventListener("click", function () {
-  worksSlider.toggleSlide(0);
-});
+loadDoc();
