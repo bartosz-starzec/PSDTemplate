@@ -1,0 +1,28 @@
+.about {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    &__header {
+        width: 50%;
+        &__text {
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 60px;
+        }
+        &__link {
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            font-weight: 800;
+            img {
+                margin-left: 5px;
+            }
+        }
+    }
+    &__background {
+        position: absolute;
+        right: 0;
+        top: -50px;
+    }
+}

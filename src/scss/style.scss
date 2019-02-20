@@ -1,5 +1,4 @@
 
-
 * {
     margin: 0;
     padding: 0;
@@ -26,6 +25,10 @@ body {
     @media screen and (min-width: 370px) {
         position: relative;
     }
+}
+
+a {
+    text-decoration: none;
 }
 
 .button {

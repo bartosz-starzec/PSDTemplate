@@ -151,35 +151,6 @@ if (window.addEventListener) {
     });
 }
 
-function loadDoc() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementsByClassName("content")[0].innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "works.html", true);
-    xhttp.send();
-
-    
-    const sliderElementClass = "works-slider__item";
-    const centerElementClass = 'works-slider__item--center';
-    setTimeout(function () {
-        const worksSlider = new Slider(sliderElementClass, centerElementClass);
-        worksSlider.toggleSlide(1);
-        const nextSlide = document.getElementsByClassName("js--next-slide")[0];
-        nextSlide.addEventListener("click", function () {
-            worksSlider.toggleSlide(1);
-        });
-
-        const prevSlide = document.getElementsByClassName("js--prev-slide")[0];
-        prevSlide.addEventListener("click", function () {
-            worksSlider.toggleSlide(0);
-        });
-    }, 3000);
-
-
-}
 
 
 
@@ -214,4 +185,33 @@ class Slider {
 
 }
 
-loadDoc();
+// function loadDoc() {
+//     var xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function () {
+//         if (this.readyState == 4 && this.status == 200) {
+//             document.getElementsByClassName("content")[0].innerHTML = this.responseText;
+//         }
+//     };
+//     xhttp.open("GET", "works.html", true);
+//     xhttp.send();
+
+    
+//     const sliderElementClass = "works-slider__item";
+//     const centerElementClass = 'works-slider__item--center';
+//     setTimeout(function () {
+//         const worksSlider = new Slider(sliderElementClass, centerElementClass);
+//         worksSlider.toggleSlide(1);
+//         const nextSlide = document.getElementsByClassName("js--next-slide")[0];
+//         nextSlide.addEventListener("click", function () {
+//             worksSlider.toggleSlide(1);
+//         });
+
+//         const prevSlide = document.getElementsByClassName("js--prev-slide")[0];
+//         prevSlide.addEventListener("click", function () {
+//             worksSlider.toggleSlide(0);
+//         });
+//     }, 3000);
+// }
+
+
+// loadDoc();
