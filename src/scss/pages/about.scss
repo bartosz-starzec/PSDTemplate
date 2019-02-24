@@ -1,28 +1,136 @@
+@import '../variables.scss';
+
 .about {
     position: relative;
     display: flex;
     flex-direction: column;
+
     &__header {
         width: 50%;
+        margin-bottom: 95px;
+
         &__text {
             font-size: 72px;
             font-weight: 800;
             line-height: 1;
             margin-bottom: 60px;
+            position: relative;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                background-color: $global-blue;
+            }
+
+            &::before {
+                top: 72px;
+                left: 205px;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+            }
+
+            &::after {
+                bottom: 6px;
+                left: 227px;
+                width: 10px;
+                height: 10px;
+
+            }
         }
+
         &__link {
             display: flex;
             align-items: center;
             text-transform: uppercase;
             font-weight: 800;
+
             img {
-                margin-left: 5px;
+                position: relative;
+                margin-left: 8px;
+                transition: all .5s ease;
+            }
+
+            &:hover {
+                img {
+                    transform: translateX(8px);
+                }
+            }
+        }
+
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+        }
+
+        &::before {
+            top: -10px;
+            left: 138px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid $global-blue;
+            border-right: 10px solid transparent;
+            transform: rotate(-20deg);
+        }
+
+        &::after {
+            top: 40px;
+            left: 330px;
+            width: 10px;
+            height: 10px;
+            background-color: $global-blue;
+            transform: rotate(45deg);
+        }
+    }
+
+    &__categories {
+        &__topic {
+            display: inline-block;
+            width: 150px;
+            height: 80px;
+            border: 10px solid $global-blue;
+            margin-right: 45px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+
+            &::after {
+                position: absolute;
+                content: attr(data-title);
+                bottom: -19px;
+                left: 14px;
+                font-weight: 800;
+                text-transform: uppercase;
+                font-size: 15px;
+                color: #fff;
+                transition: all .5s ease;
+            }
+
+            &:hover {
+                &:after {
+                    bottom: -29px;
+                }
             }
         }
     }
+
     &__background {
         position: absolute;
         right: 0;
         top: -50px;
     }
+}
+
+.topic1 {
+    background-image: url(../../src/images/photo1.png);
+}
+
+.topic2 {
+    background-image: url(../../src/images/photo2.png);
+}
+
+.topic3 {
+    background-image: url(../../src/images/photo3.png);
 }

@@ -156,23 +156,92 @@ a {
   display: flex;
   flex-direction: column; }
   .about__header {
-    width: 50%; }
+    width: 50%;
+    margin-bottom: 95px; }
     .about__header__text {
       font-size: 72px;
       font-weight: 800;
       line-height: 1;
-      margin-bottom: 60px; }
+      margin-bottom: 60px;
+      position: relative; }
+      .about__header__text::before, .about__header__text::after {
+        content: '';
+        position: absolute;
+        background-color: #0F33FF; }
+      .about__header__text::before {
+        top: 72px;
+        left: 205px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%; }
+      .about__header__text::after {
+        bottom: 6px;
+        left: 227px;
+        width: 10px;
+        height: 10px; }
     .about__header__link {
       display: flex;
       align-items: center;
       text-transform: uppercase;
       font-weight: 800; }
       .about__header__link img {
-        margin-left: 5px; }
+        position: relative;
+        margin-left: 8px;
+        transition: all .5s ease; }
+      .about__header__link:hover img {
+        transform: translateX(8px); }
+    .about__header::after, .about__header::before {
+      content: '';
+      position: absolute; }
+    .about__header::before {
+      top: -10px;
+      left: 138px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid #0F33FF;
+      border-right: 10px solid transparent;
+      transform: rotate(-20deg); }
+    .about__header::after {
+      top: 40px;
+      left: 330px;
+      width: 10px;
+      height: 10px;
+      background-color: #0F33FF;
+      transform: rotate(45deg); }
+  .about__categories__topic {
+    display: inline-block;
+    width: 150px;
+    height: 80px;
+    border: 10px solid #0F33FF;
+    margin-right: 45px;
+    position: relative;
+    background-size: cover;
+    background-position: center; }
+    .about__categories__topic::after {
+      position: absolute;
+      content: attr(data-title);
+      bottom: -19px;
+      left: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 15px;
+      color: #fff;
+      transition: all .5s ease; }
+    .about__categories__topic:hover:after {
+      bottom: -29px; }
   .about__background {
     position: absolute;
     right: 0;
     top: -50px; }
+
+.topic1 {
+  background-image: url(../../src/images/photo1.png); }
+
+.topic2 {
+  background-image: url(../../src/images/photo2.png); }
+
+.topic3 {
+  background-image: url(../../src/images/photo3.png); }
 
 .home-header {
   display: flex;
