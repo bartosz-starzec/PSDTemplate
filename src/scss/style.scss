@@ -18,7 +18,7 @@ body {
     margin: 0 auto;
     color: #fff;
 
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 370px) {
         max-width: 90%;
     }
 
@@ -145,6 +145,7 @@ a {
 }
 
 .hireUs-btn {
+    display: none;
     width: 100px;
     margin: 0 auto;
     position: absolute;
@@ -156,6 +157,9 @@ a {
     font-weight: bold;
     font-size: 14px;
     padding: 7px 0;
+    @media screen and (min-width: 650px) {
+        display: block;
+    }
 }
 
 .content {
@@ -165,8 +169,6 @@ a {
     flex-direction: column;
     align-self: center;
     justify-content: center;
-
-
 }
 
 

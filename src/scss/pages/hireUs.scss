@@ -1,0 +1,54 @@
+@import '../variables.scss';
+
+.hireUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    max-width: 75%;
+    margin: 0 auto;
+
+    &__header {
+        font-size: 30px;
+    }
+
+    &__form {
+        width: 100%;
+        margin-top: 60px;
+    }
+}
+
+.options {
+    width: 100%;
+    input[type="checkbox"] {
+        display: none;
+    }
+    .options-item {
+        border: 2px solid #fff;
+        width: 200px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 50px;
+        margin-bottom: 30px;
+        cursor: pointer;
+        &--checked {
+            background-color: $global-blue;
+            border-color: $global-blue;
+        }
+
+        
+    }
+
+    &__one, &__two {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__two {
+        width: 72%;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        justify-content: space-around;
+    }
+}

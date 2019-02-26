@@ -1,3 +1,13 @@
+
+let dotTop = 0;
+const dotContainer = document.getElementById('dotContainer');
+const distanceBetweenContentDots = 130;
+const limitDistance = 60;
+const numberOfContents = 5;
+let contentNameIndex = 0;
+let scrollDirection = '';
+let contentIndex = 0;
+
 class Element {
     constructor(width, height, top, left, classes) {
         const element = document.createElement('div');
@@ -7,15 +17,6 @@ class Element {
     }
 }
 
-let dotTop = 0;
-
-const dotContainer = document.getElementById('dotContainer');
-const distanceBetweenContentDots = 130;
-const limitDistance = 60;
-const numberOfContents = 5;
-let contentNameIndex = 0;
-let scrollDirection = '';
-let contentIndex = 0;
 
 
 const smallDot = {
@@ -192,26 +193,40 @@ class Slider {
 //             document.getElementsByClassName("content")[0].innerHTML = this.responseText;
 //         }
 //     };
-//     xhttp.open("GET", "works.html", true);
+//     xhttp.open("GET", "content/hireUs.html", true);
 //     xhttp.send();
 
-    
-//     const sliderElementClass = "works-slider__item";
-//     const centerElementClass = 'works-slider__item--center';
-//     setTimeout(function () {
-//         const worksSlider = new Slider(sliderElementClass, centerElementClass);
-//         worksSlider.toggleSlide(1);
-//         const nextSlide = document.getElementsByClassName("js--next-slide")[0];
-//         nextSlide.addEventListener("click", function () {
+//     if (document.querySelector('.works-slider__item') !== null) {
+//         console.log(document.getElementsByClassName('works-slider__item'));
+//         const sliderElementClass = "works-slider__item";
+//         const centerElementClass = 'works-slider__item--center';
+//         setTimeout(function () {
+//             const worksSlider = new Slider(sliderElementClass, centerElementClass);
 //             worksSlider.toggleSlide(1);
-//         });
+//             const nextSlide = document.getElementsByClassName("js--next-slide")[0];
+//             nextSlide.addEventListener("click", function () {
+//                 worksSlider.toggleSlide(1);
+//             });
 
-//         const prevSlide = document.getElementsByClassName("js--prev-slide")[0];
-//         prevSlide.addEventListener("click", function () {
-//             worksSlider.toggleSlide(0);
-//         });
-//     }, 3000);
+//             const prevSlide = document.getElementsByClassName("js--prev-slide")[0];
+//             prevSlide.addEventListener("click", function () {
+//                 worksSlider.toggleSlide(0);
+//             });
+//         }, 3000);
+//     }
+
 // }
 
-
 // loadDoc();
+
+var classname = document.getElementsByClassName("options-item");
+
+var myFunc = function(event, className) {
+    event.target.classList.toggle(className);
+};
+
+for (var i = 0; i < classname.length; i++) {
+    classname[i].addEventListener('click', function() {
+        myFunc(event, 'options-item--checked')
+    }, false);
+}

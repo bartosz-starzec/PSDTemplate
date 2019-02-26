@@ -6,6 +6,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var dotTop = 0;
+var dotContainer = document.getElementById('dotContainer');
+var distanceBetweenContentDots = 130;
+var limitDistance = 60;
+var numberOfContents = 5;
+var contentNameIndex = 0;
+var scrollDirection = '';
+var contentIndex = 0;
+
 var Element = function Element(width, height, top, left, classes) {
   _classCallCheck(this, Element);
 
@@ -15,14 +24,6 @@ var Element = function Element(width, height, top, left, classes) {
   return element;
 };
 
-var dotTop = 0;
-var dotContainer = document.getElementById('dotContainer');
-var distanceBetweenContentDots = 130;
-var limitDistance = 60;
-var numberOfContents = 5;
-var contentNameIndex = 0;
-var scrollDirection = '';
-var contentIndex = 0;
 var smallDot = {
   width: 3,
   height: 3
@@ -39,10 +40,10 @@ var setLineHeight = function setLineHeight(distance, numberOfContents) {
 
 setLineHeight(distanceBetweenContentDots, numberOfContents);
 
-var _loop = function _loop(i) {
+var _loop = function _loop(_i) {
   var dot = void 0;
 
-  if (i == 0) {
+  if (_i == 0) {
     dotTop += limitDistance;
   } else {
     dotTop += distanceBetweenContentDots;
@@ -58,15 +59,16 @@ var _loop = function _loop(i) {
   dotContainer.appendChild(dot);
 };
 
-for (var i = 0; i < numberOfContents; i++) {
-  _loop(i);
+for (var _i = 0; _i < numberOfContents; _i++) {
+  _loop(_i);
 }
 
 function activateElement(dot) {
   var dots = document.getElementsByClassName('dotContent');
 
-  for (var i = 0; i < dots.length; i++) {
-    dots[i].classList.remove('activeDot');
+  for (var _i2 = 0; _i2 < dots.length; _i2++) {
+    dots[_i2].classList.remove('activeDot');
+
     dot.classList.add('activeDot');
   }
 }
@@ -165,9 +167,9 @@ function () {
   _createClass(Slider, [{
     key: "toggleSlide",
     value: function toggleSlide(centerSlideIndex) {
-      for (var i = 0; i < this.elements.length; i++) {
-        if (this.elements[i].classList.contains(this.centerElementClass)) {
-          this.elements[i].classList.remove(this.centerElementClass);
+      for (var _i3 = 0; _i3 < this.elements.length; _i3++) {
+        if (this.elements[_i3].classList.contains(this.centerElementClass)) {
+          this.elements[_i3].classList.remove(this.centerElementClass);
         }
       }
 
@@ -196,21 +198,37 @@ function () {
 //             document.getElementsByClassName("content")[0].innerHTML = this.responseText;
 //         }
 //     };
-//     xhttp.open("GET", "works.html", true);
+//     xhttp.open("GET", "content/hireUs.html", true);
 //     xhttp.send();
-//     const sliderElementClass = "works-slider__item";
-//     const centerElementClass = 'works-slider__item--center';
-//     setTimeout(function () {
-//         const worksSlider = new Slider(sliderElementClass, centerElementClass);
-//         worksSlider.toggleSlide(1);
-//         const nextSlide = document.getElementsByClassName("js--next-slide")[0];
-//         nextSlide.addEventListener("click", function () {
+//     if (document.querySelector('.works-slider__item') !== null) {
+//         console.log(document.getElementsByClassName('works-slider__item'));
+//         const sliderElementClass = "works-slider__item";
+//         const centerElementClass = 'works-slider__item--center';
+//         setTimeout(function () {
+//             const worksSlider = new Slider(sliderElementClass, centerElementClass);
 //             worksSlider.toggleSlide(1);
-//         });
-//         const prevSlide = document.getElementsByClassName("js--prev-slide")[0];
-//         prevSlide.addEventListener("click", function () {
-//             worksSlider.toggleSlide(0);
-//         });
-//     }, 3000);
+//             const nextSlide = document.getElementsByClassName("js--next-slide")[0];
+//             nextSlide.addEventListener("click", function () {
+//                 worksSlider.toggleSlide(1);
+//             });
+//             const prevSlide = document.getElementsByClassName("js--prev-slide")[0];
+//             prevSlide.addEventListener("click", function () {
+//                 worksSlider.toggleSlide(0);
+//             });
+//         }, 3000);
+//     }
 // }
 // loadDoc();
+
+
+var classname = document.getElementsByClassName("options-item");
+
+var myFunc = function myFunc(event, className) {
+  event.target.classList.toggle(className);
+};
+
+for (var i = 0; i < classname.length; i++) {
+  classname[i].addEventListener('click', function () {
+    myFunc(event, 'options-item--checked');
+  }, false);
+}
