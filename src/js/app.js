@@ -69,6 +69,8 @@ for (let i = 0; i < numberOfContents; i++) {
 function activateElement(dot) {
     const dots = document.getElementsByClassName('dotContent');
     for (let i = 0; i < dots.length; i++) {
+        document.getElementsByClassName('section-1')[0].classList.remove('active-section');
+        document.getElementsByClassName('section-2')[0].classList.add('active-section');
         dots[i].classList.remove('activeDot');
         dot.classList.add('activeDot');
     }

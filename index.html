@@ -27,63 +27,215 @@
         <button class="hireUs-btn button">Hire us</button>
         <div class="content">
 
-            <div class="hireUs">
-                <h1 class="hireUs__header">
-                    You want us to do
-                </h1>
-                <form action="#" class="hireUs__form">
-                    <div class="hireUs__form__options options">
-                        <div class="options__one">
-                            <input type="checkbox" id="app-design">
-                            <label for="app-design" class="options-item">
+            <ul class="content__sections">
+                <li class="single-section">
+                    <div class="home-header">
+                        <div class="home-header__info">
+                            <p class="home-header__info__text">
 
-                                App Design
-                            </label>
-                            <input type="checkbox" id="graphic-design">
-                            <label for="graphic-design" class="options-item">
-                                Graphic Design
-                            </label>
-                            <input type="checkbox" id="motion-design">
-                            <label for="motion-design" class="options-item">
-                                Motion Design
-                            </label>
+                                Your next interactive experience
+
+                            </p>
+                            <div class="home-header__info__button">
+                                <button class="button">
+                                    Hire us
+                                    <img src="./src/images/arrow.png" alt="">
+                                    <span class="button-bg"></span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="options__two">
-                            <input type="checkbox" id="ux-design">
-                            <label for="ux-design" class="options-item">
+                        <div class="home-header__photo">
+                            <img src="./src/images/img.png" alt="astronaut">
+                        </div>
+                    </div>
+                    <div class="home-features">
+                        <a href="#" class="home-features__feature">
+                            <h2 class="home-features__feature__header">
+                                Metiew & Smith
+                            </h2>
+                            <p class="home-features__feature__text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d
+                            </p>
 
-                                UX Design
-                            </label>
-                            <input type="checkbox" id="web-design">
-                            <label for="web-design" class="options-item">
+                        </a>
+                        <a href="#" class="home-features__feature">
+                            <h2 class="home-features__feature__header">
+                                Fantasy interactive
+                            </h2>
+                            <p class="home-features__feature__text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d copy
+                            </p>
 
-                                Web Design
-                            </label>
-                            <input type="checkbox" id="marketing">
-                            <label for="marketing" class="options-item">
+                        </a>
+                        <a href="#" class="home-features__feature">
+                            <h2 class="home-features__feature__header">
+                                Paul & shark
+                            </h2>
+                            <p class="home-features__feature__text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed d copy
+                            </p>
 
-                                Marketing
-                            </label>
+                        </a>
 
+                    </div>
+                </li>
+                <li class="single-section">
+
+                    <div class="works">
+
+                        <h2 class="works__header">Selected work</h2>
+                        <div class="works__slider works-slider">
+                            <button class="works-slider__control works-slider__control--left button js--prev-slide">
+                                <img src="./src/images/ic_arrow.png" alt="">
+                            </button>
+                            <div class="works-slider__item">
+                                <div class="works-slider__item__photo">
+                                    <img src="./src/images/slider2.png" alt="">
+                                </div>
+                                <h3 class="works-slider__item__name">Matiew & Smith</h3>
+                                <p class="works-slider__item__description">Lorem ipsum dolor sit, amet consectetur
+                                    adipisicing
+                                    elit. Ie.</p>
+                            </div>
+                            <div class="works-slider__item">
+                                <div class="works-slider__item__photo">
+                                    <img src="./src/images/slider1.png" alt="">
+                                </div>
+                                <h3 class="works-slider__item__name">Victory</h3>
+                                <p class="works-slider__item__description">Lorem ipsum dolor sit, amet consectetur
+                                    adipisicing
+                                    elit. Id d.</p>
+                            </div>
+
+                            <div class="works-slider__item">
+                                <div class="works-slider__item__photo">
+                                    <img src="./src/images/slider3.png" alt="">
+                                </div>
+                                <h3 class="works-slider__item__name">Alex Nowak</h3>
+                                <p class="works-slider__item__description">Lorem ipsum dolor sit, amet consectetur
+                                    adipisicing
+                                    elit. Id .</p>
+                            </div>
+                            <button class="works-slider__control works-slider__control--right button js--next-slide">
+                                <img src="./src/images/arrow.png" alt="">
+
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="single-section">
+                    <div class="about">
+                        <div class="about__header">
+                            <h2 class="about__header__text">We <br> belive in passionate people</h2>
+                            <a href="#" class="button about__header__link">
+                                Career
+                                <img src="./src/images/arrow.png" alt="">
+                            </a>
+                        </div>
+                        <div class="about__categories">
+                            <a href="#" class="about__categories__topic topic1" data-title="winners">
+                            </a>
+                            <a href="#" class="about__categories__topic topic2" data-title="philosophy">
+                            </a>
+                            <a href="#" class="about__categories__topic topic3" data-title="history">
+                            </a>
+                        </div>
+                        <div class="about__background">
+                            <img src="./src/images/about-bg-2.png" alt="">
+                        </div>
+                    </div>
+                </li>
+                <li class="single-section section-2">
+                    <div class="contact">
+                        <div class="contact__map"></div>
+                        <div class="contact__info-modal info-modal">
+                            <p class="info-modal__item">
+                                Pawia 5,31-154 Kraków, Poland
+                            </p>
+                            <a href="#" class="info-modal__item">
+                                ouremail@gmail.com
+                            </a>
+                            <a href="#" class="info-modal__item">
+                                +48 12 628 75
+                            </a>
+                            <ul class="info-modal__options">
+                                <li class="info-modal__options__button info-modal__options__button--light-blue">
+                                    <a href="#">Bēhance</a>
+                                </li>
+                                <li class="info-modal__options__button info-modal__options__button--pink">
+                                    <a href="#">dribble</a>
+                                </li>
+                                <li class="info-modal__options__button info-modal__options__button--blue">
+                                    <a href="#">contact us</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="hireUs__form__customer-info customer-info">
-                        <div class="customer-info__input">
-                            <input type="text" name="customer-name" id="customer-name" class="js--form-input">
-                            <label for="customer-name" class="input-hint">Name</label>
-                        </div>
-                        <div class="customer-info__input">
-                            <input type="text" name="customer-email" id="customer-email" class="js--form-input">
-                            <label for="customer-email" class="input-hint">Email</label>
-                        </div>
-                    </div>
-                    <div class="hireUs__form__submit">
-                        <input type="submit" value="Send request" class="button submit-form">
-                    </div>
-                </form>
+                </li>
+                <li class="single-section section-1 active-section">
+                    <div class="hireUs">
+                        <h1 class="hireUs__header">
+                            You want us to do
+                        </h1>
+                        <form action="#" class="hireUs__form">
+                            <div class="hireUs__form__options options">
+                                <div class="options__one">
+                                    <input type="checkbox" id="app-design">
+                                    <label for="app-design" class="options-item">
 
-            </div>
+                                        App Design
+                                    </label>
+                                    <input type="checkbox" id="graphic-design">
+                                    <label for="graphic-design" class="options-item">
+                                        Graphic Design
+                                    </label>
+                                    <input type="checkbox" id="motion-design">
+                                    <label for="motion-design" class="options-item">
+                                        Motion Design
+                                    </label>
+                                </div>
+                                <div class="options__two">
+                                    <input type="checkbox" id="ux-design">
+                                    <label for="ux-design" class="options-item">
+
+                                        UX Design
+                                    </label>
+                                    <input type="checkbox" id="web-design">
+                                    <label for="web-design" class="options-item">
+
+                                        Web Design
+                                    </label>
+                                    <input type="checkbox" id="marketing">
+                                    <label for="marketing" class="options-item">
+
+                                        Marketing
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <div class="hireUs__form__customer-info customer-info">
+                                <div class="customer-info__input">
+                                    <input type="text" name="customer-name" id="customer-name" class="js--form-input">
+                                    <label for="customer-name" class="input-hint">Name</label>
+                                </div>
+                                <div class="customer-info__input">
+                                    <input type="text" name="customer-email" id="customer-email" class="js--form-input">
+                                    <label for="customer-email" class="input-hint">Email</label>
+                                </div>
+                            </div>
+                            <div class="hireUs__form__submit">
+                                <input type="submit" value="Send request" class="button submit-form">
+                            </div>
+                        </form>
+
+                    </div>
+                </li>
+
+            </ul>
+
+
 
         </div>
     </div>

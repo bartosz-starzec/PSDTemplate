@@ -133,6 +133,18 @@ a {
   flex-direction: column;
   align-self: center;
   justify-content: center; }
+  .content__sections {
+    list-style: none; }
+    .content__sections .single-section {
+      transition: opacity .6s ease;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 100; }
+    .content__sections .active-section {
+      opacity: 1;
+      height: auto; }
 
 .screenTooSmall {
   position: absolute;

@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -114,7 +113,7 @@ a {
                 content: attr(data-index);
                 color: rgb(83, 90, 88);
                 position: absolute;
-                top: -7px; 
+                top: -7px;
                 left: 15px;
             }
         }
@@ -157,6 +156,7 @@ a {
     font-weight: bold;
     font-size: 14px;
     padding: 7px 0;
+
     @media screen and (min-width: 650px) {
         display: block;
     }
@@ -170,6 +170,24 @@ a {
     flex-direction: column;
     align-self: center;
     justify-content: center;
+
+    &__sections {
+        list-style: none;
+
+        .single-section {
+            transition: opacity .6s ease;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 100;
+        }
+
+        .active-section {
+            opacity: 1;
+            height: auto;
+        }
+    }
 }
 
 
@@ -199,5 +217,3 @@ a {
         font-weight: bold;
     }
 }
-
-
