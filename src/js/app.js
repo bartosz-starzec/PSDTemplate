@@ -219,14 +219,28 @@ class Slider {
 
 // loadDoc();
 
-var classname = document.getElementsByClassName("options-item");
+const classname = document.getElementsByClassName("options-item");
 
-var myFunc = function(event, className) {
+const myFunc = function(event, className) {
     event.target.classList.toggle(className);
 };
 
-for (var i = 0; i < classname.length; i++) {
+for (let i = 0; i < classname.length; i++) {
     classname[i].addEventListener('click', function() {
         myFunc(event, 'options-item--checked')
     }, false);
+}
+
+const isEmptyInput = function () {
+    this.classList.remove('has-value');
+    if(this.value !== '') {
+        this.classList.add('has-value');
+    }
+}
+
+const inputs = document.getElementsByClassName('js--form-input');
+
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('change', isEmptyInput, false);
+    inputs[i].addEventListener('keyup', isEmptyInput, false);
 }

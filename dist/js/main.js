@@ -40,10 +40,10 @@ var setLineHeight = function setLineHeight(distance, numberOfContents) {
 
 setLineHeight(distanceBetweenContentDots, numberOfContents);
 
-var _loop = function _loop(_i) {
+var _loop = function _loop(i) {
   var dot = void 0;
 
-  if (_i == 0) {
+  if (i == 0) {
     dotTop += limitDistance;
   } else {
     dotTop += distanceBetweenContentDots;
@@ -59,16 +59,15 @@ var _loop = function _loop(_i) {
   dotContainer.appendChild(dot);
 };
 
-for (var _i = 0; _i < numberOfContents; _i++) {
-  _loop(_i);
+for (var i = 0; i < numberOfContents; i++) {
+  _loop(i);
 }
 
 function activateElement(dot) {
   var dots = document.getElementsByClassName('dotContent');
 
-  for (var _i2 = 0; _i2 < dots.length; _i2++) {
-    dots[_i2].classList.remove('activeDot');
-
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.remove('activeDot');
     dot.classList.add('activeDot');
   }
 }
@@ -167,9 +166,9 @@ function () {
   _createClass(Slider, [{
     key: "toggleSlide",
     value: function toggleSlide(centerSlideIndex) {
-      for (var _i3 = 0; _i3 < this.elements.length; _i3++) {
-        if (this.elements[_i3].classList.contains(this.centerElementClass)) {
-          this.elements[_i3].classList.remove(this.centerElementClass);
+      for (var i = 0; i < this.elements.length; i++) {
+        if (this.elements[i].classList.contains(this.centerElementClass)) {
+          this.elements[i].classList.remove(this.centerElementClass);
         }
       }
 
@@ -231,4 +230,20 @@ for (var i = 0; i < classname.length; i++) {
   classname[i].addEventListener('click', function () {
     myFunc(event, 'options-item--checked');
   }, false);
+}
+
+var isEmptyInput = function isEmptyInput() {
+  this.classList.remove('has-value');
+
+  if (this.value !== '') {
+    this.classList.add('has-value');
+  }
+};
+
+var inputs = document.getElementsByClassName('js--form-input');
+
+for (var _i = 0; _i < inputs.length; _i++) {
+  inputs[_i].addEventListener('change', isEmptyInput, false);
+
+  inputs[_i].addEventListener('keyup', isEmptyInput, false);
 }
