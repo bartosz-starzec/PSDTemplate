@@ -1,150 +1,158 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
 .hireUs {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 725px;
-    max-width: 100%;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 725px;
+  max-width: 100%;
+  margin: 0 auto;
 
-    @media screen and (min-width: 500px) and (max-width: 725px) {
-        max-width: 75%;
-    }
+  @media screen and (min-width: 500px) and (max-width: 725px) {
+    max-width: 75%;
+  }
 
-    &__header {
-        font-size: 30px;
-    }
+  &__header {
+    font-size: 30px;
+  }
 
-    &__form {
-        width: 100%;
-        margin-top: 60px;
-        &__submit {
-            display: flex;
-            justify-content: center;
-            .submit-form {
-                width: 400px;
-                max-width: 100%;
-                background-color: $global-blue;
-                border: none;
-                color: #fff;
-                font-size: 16px;
-                font-weight: 700;
-                line-height: 50px;
-                text-transform: uppercase;
-            }
-        }
+  &__form {
+    width: 100%;
+    margin-top: 60px;
+    &__submit {
+      display: flex;
+      justify-content: center;
+      .submit-form {
+        width: 400px;
+        max-width: 100%;
+        background-color: $global-blue;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 50px;
+        text-transform: uppercase;
+      }
     }
+  }
 }
 
 .options {
-    width: 100%;
-    margin-bottom: 80px;
+  width: 100%;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media screen and (min-width: 725px) {
+    flex-direction: column;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .options-item {
+    border: 2px solid #fff;
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 50px;
+    margin-bottom: 20px;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    @media screen and (min-width: 630px) {
+      width: 200px;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+    .check-mark {
+      display: none;
+    }
+
+    &--checked {
+      background-color: $global-blue;
+      border-color: $global-blue;
+      .check-mark {
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &__one,
+  &__two {
+    display: flex;
     justify-content: space-between;
+  }
+
+  &__one {
+    flex-direction: column;
 
     @media screen and (min-width: 725px) {
-        flex-direction: column;
+      flex-direction: row;
     }
+  }
 
-    input[type="checkbox"] {
-        display: none;
+  &__two {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: column;
+
+    @media screen and (min-width: 725px) {
+      flex-direction: row;
+      width: 72%;
+      margin: 0 auto;
     }
-
-    .options-item {
-        border: 2px solid #fff;
-        width: 150px;
-        text-align: center;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 50px;
-        margin-bottom: 20px;
-        cursor: pointer;
-
-        @media screen and (min-width: 630px) {
-            width: 200px;
-            font-size: 16px;
-            margin-bottom: 30px;
-        }
-
-        &--checked {
-            background-color: $global-blue;
-            border-color: $global-blue;
-        }
-
-
-    }
-
-    &__one,
-    &__two {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__one {
-        flex-direction: column;
-
-        @media screen and (min-width: 725px) {
-            flex-direction: row;
-        }
-    }
-
-    &__two {
-        flex-wrap: wrap;
-        justify-content: space-around;
-        flex-direction: column;
-
-        @media screen and (min-width: 725px) {
-            flex-direction: row;
-            width: 72%;
-            margin: 0 auto;
-        }
-    }
+  }
 }
 
 .customer-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 60px;
 
-    &__input {
-        width: 45%;
-        height: 50px;
-        font-size: 22px;
-        font-weight: 300;
-        position: relative;
-        line-height: normal;
-        @media screen and (min-width: 725px) {
-            font-size: 30px;
-        }
-
-        input {
-            width: 100%;
-            background-color: transparent;
-            border: none;
-            border-bottom: 1px solid #fff;
-            padding: 0 0 5px 0;
-            font-size: inherit;
-            color: #fff;
-            $input: &;
-            outline: none;
-        }
-
-        .input-hint {
-            position: absolute;
-            left: 0;
-            top: 0;
-            transition: all .6s ease;
-            pointer-events: none;
-        }
-
-        input:focus+.input-hint,
-        input.has-value+.input-hint {
-            top: -20px;
-            font-size: 17px;
-        }
+  &__input {
+    width: 45%;
+    height: 50px;
+    font-size: 22px;
+    font-weight: 300;
+    position: relative;
+    line-height: normal;
+    @media screen and (min-width: 725px) {
+      font-size: 30px;
     }
+
+    input {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #fff;
+      padding: 0 0 5px 0;
+      font-size: inherit;
+      color: #fff;
+      $input: &;
+      outline: none;
+    }
+
+    .input-hint {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: all 0.6s ease;
+      pointer-events: none;
+    }
+
+    input:focus + .input-hint,
+    input.has-value + .input-hint {
+      top: -20px;
+      font-size: 17px;
+    }
+  }
 }

@@ -409,15 +409,23 @@ a {
     font-weight: 700;
     line-height: 50px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer; }
     @media screen and (min-width: 630px) {
       .options .options-item {
         width: 200px;
         font-size: 16px;
         margin-bottom: 30px; } }
+    .options .options-item .check-mark {
+      display: none; }
     .options .options-item--checked {
       background-color: #0F33FF;
       border-color: #0F33FF; }
+      .options .options-item--checked .check-mark {
+        display: inline-block;
+        margin-right: 5px; }
   .options__one, .options__two {
     display: flex;
     justify-content: space-between; }
@@ -464,7 +472,7 @@ a {
       position: absolute;
       left: 0;
       top: 0;
-      transition: all .6s ease;
+      transition: all 0.6s ease;
       pointer-events: none; }
     .customer-info__input input:focus + .input-hint,
     .customer-info__input input.has-value + .input-hint {
