@@ -78,6 +78,7 @@ a {
     display: none;
     justify-content: flex-start;
     flex-direction: row;
+    overflow: hidden;
 
     @media screen and (min-width: 370px) {
         display: flex;
@@ -178,7 +179,6 @@ a {
             transition: opacity .6s ease;
             opacity: 0;
             height: 0;
-            overflow: hidden;
             position: relative;
             z-index: 100;
         }
