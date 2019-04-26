@@ -67,13 +67,8 @@ function scss() {
 }
 
 watch(
-  [
-    jsPaths.scripts.src,
-    scssPaths.styles.src,
-    imagesPath.images.src,
-    "./index.html"
-  ],
-  series(javas, scss, images, reload)
+  [jsPaths.scripts.src, scssPaths.styles.src, "./index.html"],
+  series(javas, scss, reload)
 );
 
 const dev = series(clean, javas, scss, images, serve);

@@ -9,7 +9,7 @@ html {
 body {
   background-color: #0b0b0b;
   padding: 20px 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   width: 1440px;
   max-width: 100%;
   margin: 0 auto;
@@ -23,6 +23,23 @@ body {
 
 a {
   text-decoration: none; }
+
+.navbar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 200px; }
+  .navbar__menu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-top: 50px;
+    padding: 20px 30px; }
+    .navbar__menu .activeDot {
+      text-decoration: line-through; }
+    .navbar__menu__item {
+      padding: 10px 0; }
 
 .button {
   background: transparent;
@@ -95,7 +112,7 @@ a {
         left: 15px; }
     .wrapper .contentLine .activeDot {
       background-color: #0f33ff;
-      transition: all ease .6s; }
+      transition: all ease 0.6s; }
       .wrapper .contentLine .activeDot::after {
         content: attr(data-name);
         color: #fff;
@@ -137,7 +154,7 @@ a {
   .content__sections {
     list-style: none; }
     .content__sections .single-section {
-      transition: opacity .6s ease;
+      transition: opacity 0.6s ease;
       opacity: 0;
       height: 0;
       position: relative;

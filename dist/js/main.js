@@ -69,7 +69,7 @@ var contentDot = {
   width: 4,
   height: 4
 };
-var contentNames = ["Home", "About", "Contact", "Info", "More"];
+var contentNames = ["Home", "Works", "About", "Contact", "Hire-us"];
 
 var setLineHeight = function setLineHeight(distance, numberOfContents) {
   document.getElementById("dotContainer").style.height = distance * (numberOfContents - 1) + marginalValue * 2 + "px";
@@ -101,15 +101,21 @@ for (var i = 0; i < numberOfContents; i++) {
 } // activate proper dot-content and show its content
 
 
-function activateElement(dot) {
+function activateElement(section_name) {
   document.getElementsByClassName("active-section")[0].classList.remove("active-section");
+  var elem = document.querySelectorAll(".activeDot");
 
-  for (var i = 0; i < dots.length; i++) {
-    dots[i].classList.remove("activeDot");
+  for (var i = 0; i < elem.length; i++) {
+    elem[i].classList.remove("activeDot");
   }
 
-  dot.classList.add("activeDot");
-  document.getElementsByClassName("section-" + dot.getAttribute("data-name"))[0].classList.add("active-section");
+  var el = document.querySelectorAll('[data-name="' + section_name + '"]');
+
+  for (var _i = 0; _i < el.length; _i++) {
+    el[_i].classList.add("activeDot");
+  }
+
+  document.getElementsByClassName("section-" + section_name)[0].classList.add("active-section");
 }
 
 var firstDot = document.getElementsByClassName("dotContent")[0].classList.add("activeDot"); // detect direction of mouse scroll
@@ -153,7 +159,7 @@ function checkKey(e) {
 }
 
 function handleMouseWheelDirection(direction) {
-  var currentContentDot = document.getElementsByClassName("activeDot")[0];
+  var currentContentDot = document.getElementsByClassName("dot activeDot")[0];
   var parentOfSelected = currentContentDot.parentNode;
   var children = parentOfSelected.childNodes;
   var elementIndex = currentContentDot.getAttribute("data-index");
@@ -175,7 +181,7 @@ function handleMouseWheelDirection(direction) {
 
   for (var i = 0; i < children.length; i++) {
     if (children[i].classList && children[i].getAttribute("data-name") == contentNames[contentIndex]) {
-      activateElement(children[i]);
+      activateElement(children[i].getAttribute("data-name"));
     }
   }
 } // handle content line on scroll
@@ -230,8 +236,8 @@ var isEmptyInput = function isEmptyInput() {
 
 var inputs = document.getElementsByClassName("js--form-input");
 
-for (var _i = 0; _i < inputs.length; _i++) {
-  inputs[_i].addEventListener("change", isEmptyInput, false);
+for (var _i2 = 0; _i2 < inputs.length; _i2++) {
+  inputs[_i2].addEventListener("change", isEmptyInput, false);
 
-  inputs[_i].addEventListener("keyup", isEmptyInput, false);
+  inputs[_i2].addEventListener("keyup", isEmptyInput, false);
 }

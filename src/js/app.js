@@ -63,7 +63,7 @@ const contentDot = {
   height: 4
 };
 
-const contentNames = ["Home", "About", "Contact", "Info", "More"];
+const contentNames = ["Home", "Works", "About", "Contact", "Hire-us"];
 
 const setLineHeight = (distance, numberOfContents) => {
   document.getElementById("dotContainer").style.height =
@@ -98,16 +98,20 @@ for (let i = 0; i < numberOfContents; i++) {
 }
 
 // activate proper dot-content and show its content
-function activateElement(dot) {
+function activateElement(section_name) {
   document
     .getElementsByClassName("active-section")[0]
     .classList.remove("active-section");
-  for (let i = 0; i < dots.length; i++) {
-    dots[i].classList.remove("activeDot");
+  let elem = document.querySelectorAll(".activeDot");
+  for (let i = 0; i < elem.length; i++) {
+    elem[i].classList.remove("activeDot");
   }
-  dot.classList.add("activeDot");
+  let el = document.querySelectorAll('[data-name="' + section_name + '"]');
+  for (let i = 0; i < el.length; i++) {
+    el[i].classList.add("activeDot");
+  }
   document
-    .getElementsByClassName("section-" + dot.getAttribute("data-name"))[0]
+    .getElementsByClassName("section-" + section_name)[0]
     .classList.add("active-section");
 }
 
@@ -152,7 +156,7 @@ function checkKey(e) {
 }
 
 function handleMouseWheelDirection(direction) {
-  let currentContentDot = document.getElementsByClassName("activeDot")[0];
+  let currentContentDot = document.getElementsByClassName("dot activeDot")[0];
   var parentOfSelected = currentContentDot.parentNode;
   var children = parentOfSelected.childNodes;
   let elementIndex = currentContentDot.getAttribute("data-index");
@@ -175,7 +179,7 @@ function handleMouseWheelDirection(direction) {
       children[i].classList &&
       children[i].getAttribute("data-name") == contentNames[contentIndex]
     ) {
-      activateElement(children[i]);
+      activateElement(children[i].getAttribute("data-name"));
     }
   }
 }
