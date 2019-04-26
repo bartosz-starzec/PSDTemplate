@@ -109,7 +109,8 @@ a {
         color: #535a58;
         position: absolute;
         top: -7px;
-        left: 15px; }
+        left: 15px;
+        width: 50px; }
     .wrapper .contentLine .activeDot {
       background-color: #0f33ff;
       transition: all ease 0.6s; }

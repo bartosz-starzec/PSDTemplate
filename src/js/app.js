@@ -92,7 +92,7 @@ for (let i = 0; i < numberOfContents; i++) {
   dot.setAttribute("data-name", contentNames[contentNameIndex - 1]);
   contentNameIndex++;
   dot.addEventListener("click", function() {
-    activateElement(dot);
+    activateElement(dot.getAttribute("data-name"));
   });
   dotContainer.appendChild(dot);
 }
