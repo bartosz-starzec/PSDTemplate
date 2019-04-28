@@ -15,6 +15,11 @@ var numberOfContents = 5;
 var contentNameIndex = 1;
 var scrollDirection = "";
 var contentIndex = 0;
+var navElements = document.querySelectorAll(".js--nav-element");
+var hamburgerButton = document.querySelector(".hamburger");
+hamburgerButton.addEventListener("click", function () {
+  document.querySelector(".navbar").classList.toggle("active-navbar");
+});
 var dots = document.getElementsByClassName("dotContent");
 
 var Element = function Element(width, height, top, left, classes) {
@@ -77,7 +82,7 @@ var setLineHeight = function setLineHeight(distance, numberOfContents) {
 
 setLineHeight(distanceBetweenContentDots, numberOfContents);
 
-var _loop = function _loop(i) {
+for (var i = 0; i < numberOfContents; i++) {
   var dot = void 0;
 
   if (i == 0) {
@@ -86,18 +91,24 @@ var _loop = function _loop(i) {
     dotTopMargin += distanceBetweenContentDots;
   }
 
-  dot = new Element(contentDot.width, contentDot.height, dotTopMargin, 0, " dot dotContent");
+  dot = new Element(contentDot.width, contentDot.height, dotTopMargin, 0, " dot dotContent js--nav-element");
   dot.setAttribute("data-index", "0" + contentNameIndex);
   dot.setAttribute("data-name", contentNames[contentNameIndex - 1]);
-  contentNameIndex++;
-  dot.addEventListener("click", function () {
-    activateElement(dot.getAttribute("data-name"));
-  });
+  contentNameIndex++; // dot.addEventListener("click", function() {
+  //   activateElement(dot.getAttribute("data-name"));
+  // });
+
   dotContainer.appendChild(dot);
+}
+
+var _loop = function _loop(_i) {
+  navElements[_i].addEventListener("click", function () {
+    activateElement(navElements[_i].getAttribute("data-name"));
+  });
 };
 
-for (var i = 0; i < numberOfContents; i++) {
-  _loop(i);
+for (var _i = 0; _i < navElements.length; _i++) {
+  _loop(_i);
 } // activate proper dot-content and show its content
 
 
@@ -105,14 +116,14 @@ function activateElement(section_name) {
   document.getElementsByClassName("active-section")[0].classList.remove("active-section");
   var elem = document.querySelectorAll(".activeDot");
 
-  for (var i = 0; i < elem.length; i++) {
-    elem[i].classList.remove("activeDot");
+  for (var _i2 = 0; _i2 < elem.length; _i2++) {
+    elem[_i2].classList.remove("activeDot");
   }
 
   var el = document.querySelectorAll('[data-name="' + section_name + '"]');
 
-  for (var _i = 0; _i < el.length; _i++) {
-    el[_i].classList.add("activeDot");
+  for (var _i3 = 0; _i3 < el.length; _i3++) {
+    el[_i3].classList.add("activeDot");
   }
 
   document.getElementsByClassName("section-" + section_name)[0].classList.add("active-section");
@@ -220,8 +231,8 @@ var checkOption = function checkOption(event, className) {
   event.target.classList.toggle(className);
 };
 
-for (var i = 0; i < classname.length; i++) {
-  classname[i].addEventListener("click", function () {
+for (var _i4 = 0; _i4 < classname.length; _i4++) {
+  classname[_i4].addEventListener("click", function () {
     checkOption(event, "options-item--checked");
   }, false);
 }
@@ -236,8 +247,8 @@ var isEmptyInput = function isEmptyInput() {
 
 var inputs = document.getElementsByClassName("js--form-input");
 
-for (var _i2 = 0; _i2 < inputs.length; _i2++) {
-  inputs[_i2].addEventListener("change", isEmptyInput, false);
+for (var _i5 = 0; _i5 < inputs.length; _i5++) {
+  inputs[_i5].addEventListener("change", isEmptyInput, false);
 
-  inputs[_i2].addEventListener("keyup", isEmptyInput, false);
+  inputs[_i5].addEventListener("keyup", isEmptyInput, false);
 }

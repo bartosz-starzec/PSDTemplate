@@ -6,6 +6,11 @@ const numberOfContents = 5;
 let contentNameIndex = 1;
 let scrollDirection = "";
 let contentIndex = 0;
+let navElements = document.querySelectorAll(".js--nav-element");
+const hamburgerButton = document.querySelector(".hamburger");
+hamburgerButton.addEventListener("click", function() {
+  document.querySelector(".navbar").classList.toggle("active-navbar");
+});
 
 const dots = document.getElementsByClassName("dotContent");
 
@@ -86,15 +91,22 @@ for (let i = 0; i < numberOfContents; i++) {
     contentDot.height,
     dotTopMargin,
     0,
-    " dot dotContent"
+    " dot dotContent js--nav-element"
   );
+
   dot.setAttribute("data-index", "0" + contentNameIndex);
   dot.setAttribute("data-name", contentNames[contentNameIndex - 1]);
   contentNameIndex++;
-  dot.addEventListener("click", function() {
-    activateElement(dot.getAttribute("data-name"));
-  });
+  // dot.addEventListener("click", function() {
+  //   activateElement(dot.getAttribute("data-name"));
+  // });
   dotContainer.appendChild(dot);
+}
+
+for (let i = 0; i < navElements.length; i++) {
+  navElements[i].addEventListener("click", function() {
+    activateElement(navElements[i].getAttribute("data-name"));
+  });
 }
 
 // activate proper dot-content and show its content

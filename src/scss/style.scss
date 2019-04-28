@@ -32,10 +32,16 @@ a {
 
 .navbar {
   position: fixed;
-  right: 0;
+  background-color: #000;
+  z-index: 101;
+  right: -200px;
   top: 0;
   height: 100vh;
   width: 200px;
+  transition: all 0.5s ease;
+  &.active-navbar {
+    right: 0;
+  }
   &__menu {
     display: flex;
     flex-direction: column;
@@ -47,6 +53,7 @@ a {
     }
     &__item {
       padding: 10px 0;
+      cursor: pointer;
     }
   }
 }
@@ -90,6 +97,7 @@ a {
   .hamburger {
     cursor: pointer;
     display: flex;
+    z-index: 105;
     align-items: center;
   }
 }
