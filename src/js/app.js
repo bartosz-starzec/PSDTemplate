@@ -201,7 +201,7 @@ const handleMouseWheelDirection = (direction, contentIndex) => {
   switchContentLine(contentIndex);
 };
 
-const getCurrentDot = () => {
+const getCurrentContentIndex = () => {
   const currentContentDot = getCurrentContentDot();
   let elementIndex = currentContentDot.getAttribute("data-index");
   currentContentIndex = Number(elementIndex[elementIndex.length - 1]) - 1;
@@ -228,12 +228,15 @@ const switchContentLine = contentIndex => {
 
 // handle content line on scroll
 document.onmousewheel = function(e) {
-  handleMouseWheelDirection(detectMouseWheelDirection(e), getCurrentDot());
+  handleMouseWheelDirection(
+    detectMouseWheelDirection(e),
+    getCurrentContentIndex()
+  );
 };
 
 // check what key was pressed and handle content line if needed
 document.onkeydown = function(e) {
-  handleMouseWheelDirection(checkKey(e));
+  handleMouseWheelDirection(checkKey(e), getCurrentContentIndex());
 };
 
 if (window.addEventListener) {

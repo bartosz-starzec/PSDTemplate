@@ -49,6 +49,7 @@ a {
     margin-top: 50px;
     padding: 20px 30px;
     .activeDot {
+      font-weight: bold;
       text-decoration: line-through;
     }
     &__item {

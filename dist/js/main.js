@@ -207,7 +207,7 @@ var handleMouseWheelDirection = function handleMouseWheelDirection(direction, co
   switchContentLine(contentIndex);
 };
 
-var getCurrentDot = function getCurrentDot() {
+var getCurrentContentIndex = function getCurrentContentIndex() {
   var currentContentDot = getCurrentContentDot();
   var elementIndex = currentContentDot.getAttribute("data-index");
   currentContentIndex = Number(elementIndex[elementIndex.length - 1]) - 1;
@@ -232,12 +232,12 @@ var switchContentLine = function switchContentLine(contentIndex) {
 
 
 document.onmousewheel = function (e) {
-  handleMouseWheelDirection(detectMouseWheelDirection(e), getCurrentDot());
+  handleMouseWheelDirection(detectMouseWheelDirection(e), getCurrentContentIndex());
 }; // check what key was pressed and handle content line if needed
 
 
 document.onkeydown = function (e) {
-  handleMouseWheelDirection(checkKey(e));
+  handleMouseWheelDirection(checkKey(e), getCurrentContentIndex());
 };
 
 if (window.addEventListener) {

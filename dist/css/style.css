@@ -42,6 +42,7 @@ a {
     margin-top: 50px;
     padding: 20px 30px; }
     .navbar__menu .activeDot {
+      font-weight: bold;
       text-decoration: line-through; }
     .navbar__menu__item {
       padding: 10px 0;
