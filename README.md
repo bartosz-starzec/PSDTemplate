@@ -1,6 +1,6 @@
 ## Portfolio PSD to HTML
 
-![Alt screen](https://raw.githubusercontent.com/Hhrleyowiec/PSDTemplate/master/psd-screen.PNG)
+![Alt screen](https://raw.githubusercontent.com/Harleyowiec/PSDTemplate/master/psd-screen.PNG)
 
 User can navigate through the page using menu, by clicking on dots, by scrolling or by up and down keys.
 
