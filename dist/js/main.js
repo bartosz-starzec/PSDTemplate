@@ -9,18 +9,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var dotTopMargin = 0;
 var dotContainer = document.getElementById("dotContainer"); // DOM Element which contains all content dots
 
-var distanceBetweenContentDots = 130;
-var marginalValue = 60;
+var distanceBetweenContentDots = 130; // distance between dots in pixels
+
+var marginalValue = 60; // marginal distance between first/last dot and edge of the line
+
 var numberOfContents = 5;
 var contentNameIndex = 1;
 var scrollDirection = "";
-var contentIndex = 0;
-var navElements = document.querySelectorAll(".js--nav-element");
+var currentContentIndex = 0;
 var hamburgerButton = document.querySelector(".hamburger");
-hamburgerButton.addEventListener("click", function () {
-  document.querySelector(".navbar").classList.toggle("active-navbar");
-});
 var dots = document.getElementsByClassName("dotContent");
+var navbarClass = "navbar";
+var activeNavbarClass = "active-navbar";
+var wrapperClass = "wrapper";
+var wrapperOpacityClass = "wrapperLowOpacity";
 
 var Element = function Element(width, height, top, left, classes) {
   _classCallCheck(this, Element);
@@ -76,60 +78,76 @@ var contentDot = {
 };
 var contentNames = ["Home", "Works", "About", "Contact", "Hire-us"];
 
+var hamburgerEngine = function hamburgerEngine(hamburgerButton, navbarClass, activeNavbarClass, wrapperClass, wrapperOpacityClass) {
+  hamburgerButton.addEventListener("click", function () {
+    document.querySelector("." + navbarClass + "").classList.toggle(activeNavbarClass);
+    document.querySelector("." + wrapperClass + "").classList.toggle(wrapperOpacityClass);
+  });
+};
+
 var setLineHeight = function setLineHeight(distance, numberOfContents) {
   document.getElementById("dotContainer").style.height = distance * (numberOfContents - 1) + marginalValue * 2 + "px";
 };
 
-setLineHeight(distanceBetweenContentDots, numberOfContents);
+var createDots = new Promise(function (resolve, reject) {
+  for (var i = 0; i < numberOfContents; i++) {
+    var dot = void 0;
 
-for (var i = 0; i < numberOfContents; i++) {
-  var dot = void 0;
+    if (i == 0) {
+      dotTopMargin += marginalValue;
+    } else {
+      dotTopMargin += distanceBetweenContentDots;
+    }
 
-  if (i == 0) {
-    dotTopMargin += marginalValue;
-  } else {
-    dotTopMargin += distanceBetweenContentDots;
+    dot = new Element(contentDot.width, contentDot.height, dotTopMargin, 0, " dot dotContent js--nav-element");
+    dot.setAttribute("data-index", "0" + contentNameIndex);
+    dot.setAttribute("data-name", contentNames[contentNameIndex - 1]);
+    contentNameIndex++;
+    dotContainer.appendChild(dot);
   }
 
-  dot = new Element(contentDot.width, contentDot.height, dotTopMargin, 0, " dot dotContent js--nav-element");
-  dot.setAttribute("data-index", "0" + contentNameIndex);
-  dot.setAttribute("data-name", contentNames[contentNameIndex - 1]);
-  contentNameIndex++; // dot.addEventListener("click", function() {
-  //   activateElement(dot.getAttribute("data-name"));
-  // });
+  var result = dotContainer.children.length;
+  resolve(result);
+});
 
-  dotContainer.appendChild(dot);
-}
+var navigationEngine = function navigationEngine() {
+  createDots.then(function (value) {
+    if (value === numberOfContents) {
+      (function () {
+        var navElements = document.querySelectorAll(".js--nav-element");
 
-var _loop = function _loop(_i) {
-  navElements[_i].addEventListener("click", function () {
-    activateElement(navElements[_i].getAttribute("data-name"));
+        var _loop = function _loop(i) {
+          navElements[i].addEventListener("click", function () {
+            activateElement(navElements[i].getAttribute("data-name"));
+          });
+        };
+
+        for (var i = 0; i < navElements.length; i++) {
+          _loop(i);
+        }
+      })();
+    }
   });
-};
-
-for (var _i = 0; _i < navElements.length; _i++) {
-  _loop(_i);
-} // activate proper dot-content and show its content
+}; // activate proper dot-content and show its content
 
 
 function activateElement(section_name) {
   document.getElementsByClassName("active-section")[0].classList.remove("active-section");
   var elem = document.querySelectorAll(".activeDot");
 
-  for (var _i2 = 0; _i2 < elem.length; _i2++) {
-    elem[_i2].classList.remove("activeDot");
+  for (var i = 0; i < elem.length; i++) {
+    elem[i].classList.remove("activeDot");
   }
 
   var el = document.querySelectorAll('[data-name="' + section_name + '"]');
 
-  for (var _i3 = 0; _i3 < el.length; _i3++) {
-    el[_i3].classList.add("activeDot");
+  for (var _i = 0; _i < el.length; _i++) {
+    el[_i].classList.add("activeDot");
   }
 
   document.getElementsByClassName("section-" + section_name)[0].classList.add("active-section");
-}
+} // detect direction of mouse scroll
 
-var firstDot = document.getElementsByClassName("dotContent")[0].classList.add("activeDot"); // detect direction of mouse scroll
 
 function detectMouseWheelDirection(e) {
   var delta = null,
@@ -169,12 +187,8 @@ function checkKey(e) {
   return direction;
 }
 
-function handleMouseWheelDirection(direction) {
-  var currentContentDot = document.getElementsByClassName("dot activeDot")[0];
-  var parentOfSelected = currentContentDot.parentNode;
-  var children = parentOfSelected.childNodes;
-  var elementIndex = currentContentDot.getAttribute("data-index");
-  contentIndex = Number(elementIndex[elementIndex.length - 1]) - 1;
+var handleMouseWheelDirection = function handleMouseWheelDirection(direction, contentIndex) {
+  contentIndex = contentIndex;
 
   if (direction == "down") {
     contentIndex++;
@@ -190,16 +204,35 @@ function handleMouseWheelDirection(direction) {
     }
   }
 
+  switchContentLine(contentIndex);
+};
+
+var getCurrentDot = function getCurrentDot() {
+  var currentContentDot = getCurrentContentDot();
+  var elementIndex = currentContentDot.getAttribute("data-index");
+  currentContentIndex = Number(elementIndex[elementIndex.length - 1]) - 1;
+  return currentContentIndex;
+};
+
+var getCurrentContentDot = function getCurrentContentDot() {
+  return document.getElementsByClassName("dot activeDot")[0];
+};
+
+var switchContentLine = function switchContentLine(contentIndex) {
+  var currentContentDot = getCurrentContentDot();
+  var parentOfSelected = currentContentDot.parentNode;
+  var children = parentOfSelected.childNodes;
+
   for (var i = 0; i < children.length; i++) {
     if (children[i].classList && children[i].getAttribute("data-name") == contentNames[contentIndex]) {
       activateElement(children[i].getAttribute("data-name"));
     }
   }
-} // handle content line on scroll
+}; // handle content line on scroll
 
 
 document.onmousewheel = function (e) {
-  handleMouseWheelDirection(detectMouseWheelDirection(e));
+  handleMouseWheelDirection(detectMouseWheelDirection(e), getCurrentDot());
 }; // check what key was pressed and handle content line if needed
 
 
@@ -213,6 +246,7 @@ if (window.addEventListener) {
   });
 }
 
+var firstDot = document.getElementsByClassName("dotContent")[0].classList.add("activeDot");
 var sliderElementClass = "works-slider__item";
 var centerElementClass = "works-slider__item--center";
 var worksSlider = new Slider(sliderElementClass, centerElementClass);
@@ -225,17 +259,19 @@ var prevSlide = document.getElementsByClassName("js--prev-slide")[0];
 prevSlide.addEventListener("click", function () {
   worksSlider.toggleSlide(0);
 });
-var classname = document.getElementsByClassName("options-item");
+var optionClassName = document.getElementsByClassName("options-item");
 
 var checkOption = function checkOption(event, className) {
   event.target.classList.toggle(className);
 };
 
-for (var _i4 = 0; _i4 < classname.length; _i4++) {
-  classname[_i4].addEventListener("click", function () {
-    checkOption(event, "options-item--checked");
-  }, false);
-}
+var optionsEngine = function optionsEngine(optionClassName) {
+  for (var i = 0; i < optionClassName.length; i++) {
+    optionClassName[i].addEventListener("click", function () {
+      checkOption(event, "options-item--checked");
+    }, false);
+  }
+};
 
 var isEmptyInput = function isEmptyInput() {
   this.classList.remove("has-value");
@@ -247,8 +283,30 @@ var isEmptyInput = function isEmptyInput() {
 
 var inputs = document.getElementsByClassName("js--form-input");
 
-for (var _i5 = 0; _i5 < inputs.length; _i5++) {
-  inputs[_i5].addEventListener("change", isEmptyInput, false);
+var manageInputs = function manageInputs(inputs) {
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener("change", isEmptyInput, false);
+    inputs[i].addEventListener("keyup", isEmptyInput, false);
+  }
+};
 
-  inputs[_i5].addEventListener("keyup", isEmptyInput, false);
-}
+var closeMenuOnClickOutside = function closeMenuOnClickOutside(navbar, wrapper, navbarActive, wrapperOpacity) {
+  document.addEventListener("click", function (event) {
+    var navbarDOM = document.querySelector("." + navbar + "");
+    var wrapperDOM = document.querySelector("." + wrapper + "");
+
+    if (event.target.tagName == "BODY" && navbarDOM.classList.contains(navbarActive)) {
+      navbarDOM.classList.remove(navbarActive);
+      wrapperDOM.classList.remove(wrapperOpacity);
+    }
+  });
+};
+
+window.onload = function () {
+  setLineHeight(distanceBetweenContentDots, numberOfContents);
+  navigationEngine();
+  manageInputs(inputs);
+  closeMenuOnClickOutside(navbarClass, wrapperClass, activeNavbarClass, wrapperOpacityClass);
+  hamburgerEngine(hamburgerButton, navbarClass, activeNavbarClass, wrapperClass, wrapperOpacityClass);
+  optionsEngine(optionClassName);
+};

@@ -109,6 +109,11 @@ a {
   flex-direction: row;
   overflow: hidden;
 
+  &.wrapperLowOpacity {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
   @media screen and (min-width: 370px) {
     display: flex;
   }
