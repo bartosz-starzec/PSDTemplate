@@ -1,6 +1,6 @@
 ## Portfolio PSD to HTML
 
-![alt screen](psd-screen.png)
+![Alt screen](/psd-screen.png?raw=true)
 
 User can navigate through the page using menu, by clicking on dots, by scrolling or by up and down keys.
 
