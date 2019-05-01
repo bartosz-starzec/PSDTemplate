@@ -77,13 +77,41 @@ const hamburgerEngine = (
   wrapperOpacityClass
 ) => {
   hamburgerButton.addEventListener("click", function() {
-    document
-      .querySelector("." + navbarClass + "")
-      .classList.toggle(activeNavbarClass);
-    document
-      .querySelector("." + wrapperClass + "")
-      .classList.toggle(wrapperOpacityClass);
+    toggleMenu(
+      navbarClass,
+      activeNavbarClass,
+      wrapperClass,
+      wrapperOpacityClass
+    );
   });
+};
+
+const toggleMenu = (
+  navbarClass,
+  activeNavbarClass,
+  wrapperClass,
+  wrapperOpacityClass
+) => {
+  document
+    .querySelector("." + navbarClass + "")
+    .classList.toggle(activeNavbarClass);
+  document
+    .querySelector("." + wrapperClass + "")
+    .classList.toggle(wrapperOpacityClass);
+};
+
+const closeMenu = (
+  navbarClass,
+  activeNavbarClass,
+  wrapperClass,
+  wrapperOpacityClass
+) => {
+  document
+    .querySelector("." + navbarClass + "")
+    .classList.remove(activeNavbarClass);
+  document
+    .querySelector("." + wrapperClass + "")
+    .classList.remove(wrapperOpacityClass);
 };
 
 const setLineHeight = (distance, numberOfContents) => {
@@ -125,6 +153,12 @@ const navigationEngine = () => {
       for (let i = 0; i < navElements.length; i++) {
         navElements[i].addEventListener("click", function() {
           activateElement(navElements[i].getAttribute("data-name"));
+          closeMenu(
+            navbarClass,
+            activeNavbarClass,
+            wrapperClass,
+            wrapperOpacityClass
+          );
         });
       }
     }

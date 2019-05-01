@@ -80,9 +80,18 @@ var contentNames = ["Home", "Works", "About", "Contact", "Hire-us"];
 
 var hamburgerEngine = function hamburgerEngine(hamburgerButton, navbarClass, activeNavbarClass, wrapperClass, wrapperOpacityClass) {
   hamburgerButton.addEventListener("click", function () {
-    document.querySelector("." + navbarClass + "").classList.toggle(activeNavbarClass);
-    document.querySelector("." + wrapperClass + "").classList.toggle(wrapperOpacityClass);
+    toggleMenu(navbarClass, activeNavbarClass, wrapperClass, wrapperOpacityClass);
   });
+};
+
+var toggleMenu = function toggleMenu(navbarClass, activeNavbarClass, wrapperClass, wrapperOpacityClass) {
+  document.querySelector("." + navbarClass + "").classList.toggle(activeNavbarClass);
+  document.querySelector("." + wrapperClass + "").classList.toggle(wrapperOpacityClass);
+};
+
+var closeMenu = function closeMenu(navbarClass, activeNavbarClass, wrapperClass, wrapperOpacityClass) {
+  document.querySelector("." + navbarClass + "").classList.remove(activeNavbarClass);
+  document.querySelector("." + wrapperClass + "").classList.remove(wrapperOpacityClass);
 };
 
 var setLineHeight = function setLineHeight(distance, numberOfContents) {
@@ -119,6 +128,7 @@ var navigationEngine = function navigationEngine() {
         var _loop = function _loop(i) {
           navElements[i].addEventListener("click", function () {
             activateElement(navElements[i].getAttribute("data-name"));
+            closeMenu(navbarClass, activeNavbarClass, wrapperClass, wrapperOpacityClass);
           });
         };
 
