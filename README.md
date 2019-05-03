@@ -1,5 +1,7 @@
 ## Portfolio PSD to HTML
 
+Live site: [Portfolio Project](https://portfoliopsdtemplate.000webhostapp.com)
+
 ![Alt screen](https://raw.githubusercontent.com/Harleyowiec/PSDTemplate/master/psd-screen.PNG)
 
 User can navigate through the page using menu, by clicking on dots, by scrolling or by up and down keys.
@@ -33,3 +35,5 @@ To create this project I used following tools:
 - Gulp
 
 Simple PSD project with several animations. I created all of animations in vanilla JS to practice main concepts of JavasScript and ES6.
+
+PSD created by: [Sergey Melnik](https://dribbble.com/sergeymelnik)
